@@ -4,7 +4,7 @@
         {% load static %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SIT Chaco - Sistema de Información Territorial</title>
+        <title>Enfoque Ambiental</title>
         <link rel="icon" type="image/svg+xml" href="./assets/img/logo_icono.png">
         <meta content="Sistema de información territorial de la provincia del Chaco, herramienta de visualización, consulta y descarga de datos georreferenciados" name="description">
         <meta content="geoportal, datos, georreferencia, visualizador, Chaco, SIT, Sistemas de informacion territorial, gis, sig" name="keywords">
@@ -47,9 +47,8 @@
         </div>
 
         <div class="contenedorblog">
-
             <div class="contenedorblog_inicio">
-                <h1>Blog de noticias</h1> 
+                <h1>Blog de noticias ambientales</h1> 
                 <div class="contenedor_amb">
                     <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="instagram" title="vidasilvestre"/></a>
                     <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="facebook" title="facebook"/></a>
@@ -63,37 +62,60 @@
                     <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="youtube" title="youtube"/></a>
                 </div>     
             </div>
-        
-                <div class="contenedorblog_categorias">
-                    <ul>
-                    </ul>
-                </div>
+            <div class="contenedorblog_categorias">
+                <ul>
+                    <li>
+                        <a href="?">Todos</a>  
+                    </li>
+                    {% for categoria in categorias %}
+                        <li>
+                            <a href="?categoria={{ categoria.nombre }}">{{ categoria.nombre }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
 
-            <div class="contenedorposteos">
+        <div class="contenedorposteos">
                 {% for i in posts %}
                     <div class="contenedorposteos_tarjeta">
                         <div class="tarjeta_img">
-                            <img src=" " alt="noticia">
-                            <p class="categoria">{{ i.categoria.nombre }}</p> 
-                            <h2>{{ i.titulo }}</h2>
-                            <h4>{{ i.autor.username }}</h4>
-                            <p>{{ i.resumen }}</p>
-                            <p>{{ i.texto }}</p>
+                            <div class="categorianoticia">
+                                <img src="{% static 'img/iconos/etiqueta.png' %}" alt="Etiqueta" class="icono-etiqueta">
+                                <h3>{{ i.categoria.nombre }}</h3>
+                            </div>
+                            <img class="imagenposts" src="{{ i.imagen.url }}" alt="noticia">
                         </div>
+                        <div class="tarjeta_datos">
+                            <h4>{{ i.autor.username }}</h4>
+                            <h4>{{ i.fecha }}</h4>
+                        </div> 
+                        <h2>{{ i.titulo }}</h2>
+                        <p>{{ i.resumen }}</p>
+                        <div class="boton_vernoticia">
+                            <a href="">LEER MAS &rarr;</a>
+                        </div>   
                     </div>
                 {% empty %}
-                    <p>No hay posts disponibles.</p> 
+                    <p>No hay posts disponibles para mostrar, vuelva pronto!</p> 
                 {% endfor %}
             </div>
-    </div>
+        </div>
 
+        <!-- Barra de paginación -->
+        <div class="paginacion">
+            <div class="pagina-enlaces">               
+                <span>-</span>
 
+                {% for num in posts.paginator.page_range %}
+                    {% if num == posts.number %}
+                        <strong>{{ num }}</strong>
+                    {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}    
+                <span>-</span>
+            </div>
+        </div>        
 
-
-
-
-
-
-        
-   </body>
+    </body>

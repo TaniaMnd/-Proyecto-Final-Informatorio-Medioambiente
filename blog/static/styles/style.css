@@ -149,6 +149,7 @@ header {
 .contenedorblog_inicio h1 {
     font-size: 1.7rem;
     font-weight: 400;
+    margin-left: 2.5rem;
 }
 
 .contenedor_amb {
@@ -189,8 +190,148 @@ header {
 
 /* NOTICIA */
 
+.contenedorblog_categorias ul {
+    display: flex; 
+    margin-left: 2rem;                      
+}
+
+.contenedorblog_categorias li {
+    margin-right: 1rem;   
+}
+
+.contenedorblog_categorias a {
+    padding: 0.5rem 1rem;
+}
+
+
+.contenedorposteos {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 .contenedorposteos_tarjeta {
-    background-color: violet;
-    width: 5rem;
-    height: 10rem;
+    display: flex;                
+    flex-direction: column;       
+    justify-content: space-between; 
+    width: 35rem;
+    height: 34rem; 
+    margin: 0.8rem 1rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.tarjeta_datos {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.tarjeta_datos h4 {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--gris);
+    margin: 0.5rem 0;
+}
+
+.contenedorposteos_tarjeta h2 {
+    font-size: 1rem;
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.contenedorposteos_tarjeta p {
+    font-size: 0.85rem;
+    padding: 0 1rem;
+}
+
+
+.tarjeta_img {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.imagenposts {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 15rem;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.categorianoticia {
+    display: flex; 
+    align-items: center; 
+    position: absolute; 
+    top: 1rem; 
+    left: 2rem; 
+    background-color: var(--blanco);
+    border-radius: 1rem; 
+    z-index: 1000;
+    font-size: 0.8rem; 
+    font-weight: 400;
+    padding: 0.45rem 1.2rem;
+}
+
+.categorianoticia h3 {
+    font-size: 0.7rem;
+}
+
+.icono-etiqueta {
+    width: 0.7rem; 
+    height: auto; 
+    margin-right: 0.5rem; 
+}
+
+.boton_vernoticia {
+    margin-top: auto; 
+    text-align: right;
+    margin: 0 1.5rem 1rem 0; 
+}
+
+.boton_vernoticia a {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--verdeagua); 
+    border: 1px solid var(--verdeagua);
+    padding: 0.3rem 1rem; 
+    border-radius: 1rem; 
+    text-decoration: none; 
+}
+
+
+/* MAS PAGINAS - PAGINACION */
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.pagina-info {
+    margin-right: 1rem;
+}
+
+.pagina-enlaces {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; 
+}
+
+.pagina-enlaces a {
+    padding: 0.2rem 0.8rem; 
+}
+
+.pagina-enlaces strong {
+    color: var(--blanco);
+    font-weight: 400;
+    padding: 0.05rem 0.6rem; 
+    border-radius: 1rem;
+    background-color: var(--gris);
 }
