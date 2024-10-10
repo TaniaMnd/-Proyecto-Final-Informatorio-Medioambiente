@@ -18,6 +18,8 @@ body, h1, h2, h3, h4, p, li, ul, section, div, a, ol, img {
     box-sizing: border-box;
 }
 
+
+
 .contenedor_ppal {
     position: relative; 
     overflow: hidden; 
@@ -220,13 +222,14 @@ header {
     margin: 0.8rem 1rem;
     border-radius: 2rem;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     box-sizing: border-box;
 }
 
 .tarjeta_datos {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 1rem;
 }
 
@@ -334,4 +337,50 @@ header {
     padding: 0.05rem 0.6rem; 
     border-radius: 1rem;
     background-color: var(--gris);
+}
+
+
+/** QUIENES SOMOS **/
+
+.contenedor_quienesomos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8rem;
+}
+
+.contenedor_quienesomos-imagentx {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 5rem;
+}
+
+.contenedor_quienesomos-imagentx img {
+    max-width: 25rem;
+    height: auto;
+}
+
+.contenedor_quienesomos h1 {
+    font-size: 2rem;
+    color: var(--gris);
+    margin-bottom: 2.5rem;
+}
+
+.quienes-text p {
+    font-size: 0.9rem;
+    width: 40rem;
+}
+
+footer {
+    display: flex;
+    justify-content: end; 
+    gap: 30%; 
+    color: white;
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: calc(100% - 30px); 
+    z-index: 1000; 
 }

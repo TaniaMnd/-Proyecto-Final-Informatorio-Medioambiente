@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Enfoque Ambiental</title>
-        <link rel="icon" type="image/svg+xml" href="./assets/img/logo_icono.png">
+        <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
         <meta content="Sistema de información territorial de la provincia del Chaco, herramienta de visualización, consulta y descarga de datos georreferenciados" name="description">
         <meta content="geoportal, datos, georreferencia, visualizador, Chaco, SIT, Sistemas de informacion territorial, gis, sig" name="keywords">
 
@@ -28,8 +28,9 @@
                     <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
                 </div>
                 <div class="encabezado_enlaces">
-                    <li><a href="#">¿Quiénes somos?</a></li>
-                    <li><a href="#">Contactanos</a></li>
+                    <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
+                    <li><a href="">Contactanos</a></li>
+                    <li><a href="">Sobre el proyecto</a></li>
                     <li><a href="" class="enlace_boton">Iniciar Sesión</a></li>
                 </div>
             </header>
@@ -48,18 +49,18 @@
 
         <div class="contenedorblog">
             <div class="contenedorblog_inicio">
-                <h1>Blog de noticias ambientales</h1> 
-                <div class="contenedor_amb">
-                    <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="instagram" title="vidasilvestre"/></a>
-                    <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="facebook" title="facebook"/></a>
-                    <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="x-twitter" title="x-twitter"/></a>
-                    <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="youtube" title="youtube"/></a>
-                </div>   
+                <h1>Blog de noticias ambientales</h1>   
                 <div class="contenedor_redes">
                     <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="instagram" title="instagram"/></a>
                     <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="facebook" title="facebook"/></a>
                     <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/twitter.png' %}" alt="x-twitter" title="x-twitter"/></a>
                     <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="youtube" title="youtube"/></a>
+                </div> 
+                <div class="contenedor_amb">
+                    <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="instagram" title="vidasilvestre"/></a>
+                    <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="facebook" title="facebook"/></a>
+                    <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="x-twitter" title="x-twitter"/></a>
+                    <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="youtube" title="youtube"/></a>
                 </div>     
             </div>
             <div class="contenedorblog_categorias">

@@ -19,3 +19,6 @@ def posts(request):
 
     return render(request, 'index.html', {'posts': page_obj, 'categorias': categorias})
 
+def quienessomos(request):
+    return render(request, 'quienessomos.html')
+
