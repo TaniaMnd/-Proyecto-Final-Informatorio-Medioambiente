@@ -94,7 +94,7 @@
                         <h2>{{ i.titulo }}</h2>
                         <p>{{ i.resumen }}</p>
                         <div class="boton_vernoticia">
-                            <a href="">LEER MAS &rarr;</a>
+                            <a href="{% url 'postindividual' i.id %}">LEER MÁS &rarr;</a> 
                         </div>   
                     </div>
                 {% empty %}
