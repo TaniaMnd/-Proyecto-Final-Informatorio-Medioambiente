@@ -57,26 +57,33 @@
             <div class="contenidonoticia_texto--division"></div>
         </div>
 
+        <div class="contenidocomentarios_titulo">            
+            <h3>Comentarios</h3>
+        </div>
+
         <div class="contenidocomentarios">
-            <h3>Comentarios:</h3>
             {% for comentario in comentarios %}
                 <div class="contenidocomentarios_usuario">
-                    <p><strong>{{ comentario.autor.username }}</strong> ({{ comentario.fecha_publicacion }}):</p>
-                    <p>{{ comentario.contenido }}</p>
+                    <h4>{{ comentario.autor.username }} | {{ comentario.fecha_publicacion }}</h4>
+                    <p>" {{ comentario.contenido }} "</p>
                 </div>
             {% empty %}
                 <p>Todavía no hay comentarios en esta noticia, dejá el tuyo!</p>
             {% endfor %}
+            <div class="contenidonoticia_texto--division"></div>
         </div>
 
 
         <div class="formcomentario">
-            <h3>Dejá tu comentario</h3>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }} 
-            <button type="submit">Enviar</button>
-        </form>
+            <h3>Agrega tu comentario</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.contenido }}
+                    <button type="submit" class="btn-submit">↑</button>
+                </div>
+
+            </form>
         </div>
 
 
@@ -86,7 +93,7 @@
 
 
 
-        <footer>
+        <!-- <footer>
             <div class="contenedor_redes">
                 <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="instagram" title="instagram"/></a>
                 <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="facebook" title="facebook"/></a>
@@ -99,5 +106,5 @@
                 <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="x-twitter" title="x-twitter"/></a>
                 <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="youtube" title="youtube"/></a>
             </div>  
-        </footer>
+        </footer> -->
     </body>
