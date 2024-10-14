@@ -1,0 +1,12 @@
+<div></div>
+    <h1>Inicio de sesión</h1>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit">
+        </form>
+    </div>
+</div>
