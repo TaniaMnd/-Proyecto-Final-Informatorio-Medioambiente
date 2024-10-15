@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfoque Ambiental</title>
+    <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
+    <meta content="Blog sobre noticias ambientales y actualidad del planeta" name="description">
+    <meta content="blog, ambiental, noticias, medio ambiente" name="keywords">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="contenedor_ppal">
+        <header>
+            <div class="encabezado_logo">
+                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="Enfoque Ambiental">
+            </div>
+            <nav>
+                <ul class="navbar">
+                    <li><a class="nav-link {% if request.path == '' %}active{% endif %}" href="{% url 'noticias' %}">Noticias</a></li>
+                    <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
+                    <li><a href="{% url 'contactanos' %}">Contáctanos</a></li>
+                    <li><a href="">Sobre el proyecto</a></li>
+                    <li><a class="nav-link {% if request.path == 'registro/' %}active{% endif %}" href="{% url 'registro' %}">Registro</a></li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <span>Hola, {{ user.username }}!</span>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-button">Salir</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <div class="contenedor_ppal-logo">
+            <h1>Bienvenidos a Enfoque Ambiental!</h1>
+            <p>Tu blog de noticias con todo lo que tenés que saber de la actualidad de nuestro planeta.</p>
+        </div>
+
+        <main>
+            <section class="featured-news">
+                <h2>Blog de noticias ambientales</h2>
+                <div class="post-container">
+                    {% for i in posts %}
+                    <article class="post-card">
+                        <img src="{{ i.imagen.url }}" alt="{{ i.titulo }}">
+                        <h3>{{ i.titulo }}</h3>
+                        <p>{{ i.resumen }}</p>
+                        <div class="post-footer">
+                            <span>{{ i.fecha }} | {{ i.autor.username }}</span>
+                            <a href="{% url 'postindividual' i.id %}">LEER MÁS &rarr;</a>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <p>No hay posts disponibles para mostrar, vuelva pronto!</p>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="contenedor_redes">
+                <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="instagram"/></a>
+                <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="facebook"/></a>
+                <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/twitter.png' %}" alt="twitter"/></a>
+                <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="youtube"/></a>
+            </div>
+            <div class="contenedor_amb">
+                <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="Vida Silvestre"/></a>
+                <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="Aves Argentinas"/></a>
+                <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="WWF"/></a>
+                <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="Greenpeace"/></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

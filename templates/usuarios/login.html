@@ -1,12 +1,126 @@
-<div></div>
-    <h1>Inicio de sesión</h1>
-    <div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #6b8e23;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .encabezado_logo img {
+            height: 50px;
+        }
+        .encabezado_enlaces {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .encabezado_enlaces li {
+            margin-left: 20px;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #b1b2b2;
+        }
+        .contenedor_login {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            background-color: #3cb371;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+        .btn:hover {
+            background-color: #2e8b57;
+        }
+        footer {
+            background-color: #6b8e23;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="encabezado_logo">
+                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="logoenfoqueambiental">
+            </a>
+        </div>
+        <div class="encabezado_enlaces">
+            <li><a class="nav-link" href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
+            <li><a href="">Contactanos</a></li>
+            <li><a href="">Sobre el proyecto</a></li>
+        </div>
+    </header>
+
+    <div class="contenedor_login">
+        <h1>Inicio de sesión</h1>
         <form action="" method="post">
             {% csrf_token %}
-
-            {{ form.as_p }}
-
-            <input type="submit">
+            <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password }}
+            </div>
+            <input type="submit" class="btn" value="Iniciar Sesión">
         </form>
     </div>
-</div>
+
+    <footer>
+        <div class="contenedor_redes">
+            <!-- Redes sociales -->
+        </div>
+    </footer>
+</body>
+</html>

@@ -39,6 +39,22 @@ class RegistroForm(UserCreationForm):
             "password2",
             "icono"
         ]
+
+from django import forms
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        max_length=200,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Nombre de usuario"}
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Contraseña"}
+        ),
+        required=True
+    )
         # widget = {
         #     "username": forms.Textarea(attrs={"class": "form-control"}),
         #     "email": forms.EmailField(attrs={"class": "form-control"}),

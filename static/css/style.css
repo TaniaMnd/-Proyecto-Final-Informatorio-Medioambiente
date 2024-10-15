@@ -1,32 +1,98 @@
+/* Estilos existentes */
 body {
-    background-color: black;
-    color: white;
-    margin: 8%;
-    padding: 2%;
-
+    background-color: rgb(255, 255, 255); /* Color de fondo */
+    color: rgb(49, 48, 48); /* Color del texto */
+    margin: 0% 8% 8% 8%; /* Margen: arriba, derecha, abajo, izquierda */
+    padding: 2%; /* Relleno dentro del cuerpo */
+    font-family: 'Poppins', sans-serif; /* Tipografía */
 }
 
 header {
-    color: white;
-    padding: 15px;
+    color: rgb(118, 109, 109); /* Color del texto del encabezado */
+    padding: 15px; /* Relleno del encabezado */
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
+    display: flex; /* Uso de flexbox para la barra de navegación */
+    justify-content: space-around; /* Espacio uniforme entre los elementos */
+    list-style: none; /* Sin viñetas */
 }
 
 .logo {
-    width: 120px;
-    height: 60px;
-    object-fit: cover;
+    width: 120px; /* Ancho de la imagen del logo */
+    height: 60px; /* Altura de la imagen del logo */
+    object-fit: cover; /* Ajuste de la imagen */
 }
 
 .img-detalle {
-    margin: 15%;
+    margin: 15%; /* Margen alrededor de imágenes de detalle */
 }
 
 .img-perfil {
-    width: 200px;
+    width: 200px; /* Ancho de la imagen del perfil */
 }
+
+/* Nuevos estilos para la página */
+.hero {
+    background-image: url('{% static "img/fondo_inicio.png" %}'); /* Imagen de fondo */
+    background-size: cover; /* Cubrir todo el contenedor */
+    color: rgb(87, 91, 88); /* Color del texto */
+    text-align: center; /* Alinear texto al centro */
+    padding: 50px 0; /* Relleno superior e inferior */
+}
+
+.featured-news {
+    padding: 20px; /* Relleno para la sección de noticias destacadas */
+    background-color: rgb(194, 200, 194); /* Fondo blanco para el contenido */
+    border-radius: 8px; /* Bordes redondeados */
+    color: black; /* Color del texto */
+}
+
+.post-container {
+    display: grid; /* Uso de grid para los artículos */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas responsivas */
+    gap: 20px; /* Espacio entre tarjetas */
+}
+
+.post-card {
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar desbordamiento */
+    padding: 15px; /* Relleno */
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra ligera */
+}
+
+.post-card img {
+    width: 100%; /* Ancho completo */
+    height: auto; /* Altura automática */
+}
+
+.post-footer {
+    display: flex; /* Uso de flexbox para pie de artículo */
+    justify-content: space-between; /* Espacio entre elementos */
+    margin-top: 10px; /* Margen superior */
+}
+
+.social-links, .environment-links {
+    display: flex; /* Uso de flexbox */
+    justify-content: center; /* Centrar contenido */
+    gap: 15px; /* Espacio entre enlaces */
+    margin-top: 5px; /* Margen superior */
+}
+
+.logout-button {
+    background-color: #a9b2a8; /* Color de fondo rojo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 7px; /* Bordes redondeados */
+    padding: 7px 12px; /* Relleno */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.logout-button:hover {
+    background-color: #6ef242; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+
