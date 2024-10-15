@@ -21,14 +21,24 @@
         <header>
             <div class="encabezado_logo">
                 <a href="{% url 'posts' %}">
-                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="logoenfoqueambiental">
+                    <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
                 </a>
             </div>
             <div class="encabezado_enlaces">
                 <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
                 <li><a href="">Contactanos</a></li>
                 <li><a href="">Sobre el proyecto</a></li>
-                <li><a href="" class="enlace_boton">Iniciar Sesión</a></li>
+                {% if user.is_authenticated %}
+                    <li>Bienvenido, {{ user.username }}</li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Cerrar sesión</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                {% endif %}
             </div>
         </header>
 

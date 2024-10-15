@@ -25,21 +25,36 @@
             </div>
             <header>
                 <div class="encabezado_logo">
-                    <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
+                    <a href="{% url 'posts' %}">
+                        <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
+                    </a>
                 </div>
                 <div class="encabezado_enlaces">
                     <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
                     <li><a href="">Contactanos</a></li>
                     <li><a href="">Sobre el proyecto</a></li>
-                    <li><a href="" class="enlace_boton">Iniciar Sesión</a></li>
+                    {% if user.is_authenticated %}
+                        <li>Bienvenido, {{ user.username }}</li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a class="boton_inicioses" href="{% url 'login' %}">Iniciar Sesión</a></li>
+                        <!-- <li><a href="{% url 'registro' %}">Registrarse</a></li> -->
+                    {% endif %}
                 </div>
             </header>
+
             <div class="contenedor_ppal-logo">
                 <h1>Bienvenidos a Enfoque ambiental!<br>
-                    Tu blog de noticias con todo lo que tenes que saber de la actualidad de nuestro planeta
+                    tu blog de noticias con todo lo que tenes que saber de la actualidad de nuestro planeta
                 </h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed tenetur sit aspernatur necessitatibus repellat,
-                quaerat, fuga possimus totam debitis molestias consequuntur. Quaerat eius possimus autem! Est dolor itaque modi incidunt.</p>
+                <p>Enfoque Ambiental es tu fuente confiable para estar al tanto de las últimas noticias y tendencias sobre el medio ambiente. 
+                    Nuestro blog ofrece artículos informativos, análisis y recursos sobre sostenibilidad, cambio climático y conservación, 
+                    todo diseñado para inspirarte a tomar acción por nuestro planeta. ¡Explorá y compartí con nosotros!</p>
             </div>
             <div class="contenedor_ppal-deslizar">
                 <h2>Deslizá para conocer más</h2>
@@ -57,10 +72,10 @@
                     <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="youtube" title="youtube"/></a>
                 </div> 
                 <div class="contenedor_amb">
-                    <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="instagram" title="vidasilvestre"/></a>
-                    <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="facebook" title="facebook"/></a>
-                    <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="x-twitter" title="x-twitter"/></a>
-                    <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="youtube" title="youtube"/></a>
+                    <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="vidasilvestre" title="vidasilvestre"/></a>
+                    <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="avesarg" title="avesarg"/></a>
+                    <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="wwf" title="wwf"/></a>
+                    <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="greenpace" title="greenpace"/></a>
                 </div>     
             </div>
             <div class="contenedorblog_categorias">
@@ -77,30 +92,38 @@
             </div>
         </div>
 
+        
+
         <div class="contenedorposteos">
-                {% for i in posts %}
-                    <div class="contenedorposteos_tarjeta">
-                        <div class="tarjeta_img">
-                            <div class="categorianoticia">
-                                <img src="{% static 'img/iconos/etiqueta.png' %}" alt="Etiqueta" class="icono-etiqueta">
-                                <h3>{{ i.categoria.nombre }}</h3>
-                            </div>
-                            <img class="imagenposts" src="{{ i.imagen.url }}" alt="noticia">
+            {% for i in posts %}
+                <div class="contenedorposteos_tarjeta">
+                    <div class="tarjeta_img">
+                        <div class="categorianoticia">
+                            <img src="{% static 'img/iconos/etiqueta.png' %}" alt="Etiqueta" class="icono-etiqueta">
+                            <h3>{{ i.categoria.nombre }}</h3>
                         </div>
-                        <div class="tarjeta_datos">
-                            <h4>{{ i.autor.username }}</h4>
-                            <h4>{{ i.fecha }}</h4>
-                        </div> 
-                        <h2>{{ i.titulo }}</h2>
-                        <p>{{ i.resumen }}</p>
-                        <div class="boton_vernoticia">
-                            <a href="{% url 'postindividual' i.id %}">LEER MÁS &rarr;</a> 
-                        </div>   
+                        <img class="imagenposts" src="{{ i.imagen.url }}" alt="noticia">
                     </div>
-                {% empty %}
-                    <p>No hay posts disponibles para mostrar, vuelva pronto!</p> 
-                {% endfor %}
-            </div>
+                    <div class="tarjeta_datos">
+                        <h4>{{ i.autor.username }}</h4>
+                        <h4>{{ i.fecha }}</h4>
+                    </div> 
+                    <h2>{{ i.titulo }}</h2>
+                    <p>{{ i.resumen }}</p>
+                    <div class="boton_vernoticia">
+                        <a href="{% url 'postindividual' i.id %}">LEER MÁS &rarr;</a> 
+                    </div>   
+        
+                    {% if user.is_staff or user.is_superuser %}
+                        <form action="{% url 'eliminar_post' i.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-eliminar">x</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No hay posts disponibles para mostrar, vuelva pronto!</p> 
+            {% endfor %}
         </div>
 
         <!-- Barra de paginación -->
@@ -117,6 +140,5 @@
                 {% endfor %}    
                 <span>-</span>
             </div>
-        </div>        
-
+        </div>         
     </body>
