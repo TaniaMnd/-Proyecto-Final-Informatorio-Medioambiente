@@ -27,7 +27,7 @@ class Post(models.Model):
 
 
 
-class Meta: #orden de las consultas a la BD
+class Meta: 
     ordering = ('-publicado',)  
     
     def __str__(self):
@@ -75,4 +75,5 @@ class Comentario(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
         
-        
+
+

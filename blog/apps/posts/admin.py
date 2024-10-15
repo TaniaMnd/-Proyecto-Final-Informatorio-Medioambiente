@@ -7,6 +7,9 @@ from .models import Post, Categoria, Comentario, CustomUser
 class PostsAdmin(admin.ModelAdmin):
     list_display = ('id', 'titulo', 'fecha', 'autor', 'resumen', 'texto', 'activo', 'categoria', 'imagen', 'publicado')
 
+
+
+
 # Registra tus otros modelos aquí.
 admin.site.register(Categoria)
 admin.site.register(Comentario)

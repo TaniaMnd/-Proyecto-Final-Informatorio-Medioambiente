@@ -24,18 +24,26 @@
         <header>
             <div class="encabezado_logo">
                 <a href="{% url 'posts' %}">
-                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="logoenfoqueambiental">
+                    <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
                 </a>
             </div>
             <div class="encabezado_enlaces">
                 <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
                 <li><a href="">Contactanos</a></li>
                 <li><a href="">Sobre el proyecto</a></li>
-                <li><a href="" class="enlace_boton">Iniciar Sesión</a></li>
+                {% if user.is_authenticated %}
+                    <li>Bienvenido, {{ user.username }}</li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Cerrar sesión</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                {% endif %}
             </div>
         </header>
-
-
 
 
         <div class="contenidonoticia">
@@ -43,7 +51,15 @@
                 <h4>{{ post.categoria.nombre }} | Noticias | Actualidad<h4>
                 <h2>{{ post.titulo }}</h2>
                 <div class="contenidonoticia_titulos--division"></div>
-                <p>{{ post.fecha }} | Autor: {{post.autor}}</p>
+                <div class="redesautor_noticia">
+                    <p>{{ post.fecha }} | Autor: {{post.autor}}</p>
+                    <div class="redes_noticia">
+                        <a href=""  class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/instagram.png' %}" alt="instagram" title="instagram"/></a>
+                        <a href=""  class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/facebook.png' %}" alt="facebook" title="facebook"/></a>
+                        <a href="" class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/twitter.png' %}" alt="x-twitter" title="x-twitter"/></a>
+                        <a href="" class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/youtube.png' %}" alt="youtube" title="youtube"/></a>
+                    </div>
+                </div>
             </div>
             <div class="contenidonoticia_resumen">
                 <p>{{ post.resumen }}</p>
@@ -59,6 +75,7 @@
 
         <div class="contenidocomentarios_titulo">            
             <h3>Comentarios</h3>
+
         </div>
 
         <div class="contenidocomentarios">
@@ -70,8 +87,29 @@
             {% empty %}
                 <p>Todavía no hay comentarios en esta noticia, dejá el tuyo!</p>
             {% endfor %}
-            <div class="contenidonoticia_texto--division"></div>
+
         </div>
+
+        
+        <div class="paginacion_comentarios">
+            <span class="step-links">
+                {% if comentarios.has_previous %}
+                    <a href="?page=1">&laquo;</a>
+                    <a href="?page={{ comentarios.previous_page_number }}"></a>
+                {% endif %}
+
+                <span class="current">
+                    {{ comentarios.number }} de {{ comentarios.paginator.num_pages }}
+                </span>
+
+                {% if comentarios.has_next %}
+                    <a href="?page={{ comentarios.next_page_number }}"></a>
+                    <a href="?page={{ comentarios.paginator.num_pages }}">→</a>
+                {% endif %}
+            </span>  
+        </div>
+
+        <div class="contenidonoticia_texto--division2"></div>  
 
 
         <div class="formcomentario">
@@ -82,29 +120,15 @@
                     {{ form.contenido }}
                     <button type="submit" class="btn-submit">↑</button>
                 </div>
+        </div>        
 
-            </form>
-        </div>
+        <div class="contenedor_amb_ind">
+            <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="instagram" title="vidasilvestre"/></a>
+            <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="facebook" title="facebook"/></a>
+            <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="x-twitter" title="x-twitter"/></a>
+            <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="youtube" title="youtube"/></a>
+        </div>     
 
 
 
-
-
-
-
-
-        <!-- <footer>
-            <div class="contenedor_redes">
-                <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="instagram" title="instagram"/></a>
-                <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="facebook" title="facebook"/></a>
-                <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/twitter.png' %}" alt="x-twitter" title="x-twitter"/></a>
-                <a href="" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="youtube" title="youtube"/></a>
-            </div> 
-            <div class="contenedor_amb">
-                <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="instagram" title="vidasilvestre"/></a>
-                <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="facebook" title="facebook"/></a>
-                <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="x-twitter" title="x-twitter"/></a>
-                <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="youtube" title="youtube"/></a>
-            </div>  
-        </footer> -->
     </body>
