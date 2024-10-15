@@ -1,98 +1,98 @@
-/* Estilos existentes */
+
 body {
-    background-color: rgb(255, 255, 255); /* Color de fondo */
-    color: rgb(49, 48, 48); /* Color del texto */
-    margin: 0% 8% 8% 8%; /* Margen: arriba, derecha, abajo, izquierda */
-    padding: 2%; /* Relleno dentro del cuerpo */
-    font-family: 'Poppins', sans-serif; /* Tipografía */
+    background-color: rgb(255, 255, 255); 
+    color: rgb(49, 48, 48); 
+    margin: 0% 8% 8% 8%; 
+    padding: 2%; 
+    font-family: 'Poppins', sans-serif; 
 }
 
 header {
-    color: rgb(118, 109, 109); /* Color del texto del encabezado */
-    padding: 15px; /* Relleno del encabezado */
+    color: rgb(118, 109, 109); 
+    padding: 15px; 
 }
 
 .navbar {
-    display: flex; /* Uso de flexbox para la barra de navegación */
-    justify-content: space-around; /* Espacio uniforme entre los elementos */
-    list-style: none; /* Sin viñetas */
+    display: flex; 
+    justify-content: space-around; 
+    list-style: none; 
 }
 
 .logo {
-    width: 120px; /* Ancho de la imagen del logo */
-    height: 60px; /* Altura de la imagen del logo */
-    object-fit: cover; /* Ajuste de la imagen */
+    width: 120px; 
+    height: 60px; 
+    object-fit: cover; 
 }
 
 .img-detalle {
-    margin: 15%; /* Margen alrededor de imágenes de detalle */
+    margin: 15%; 
 }
 
 .img-perfil {
-    width: 200px; /* Ancho de la imagen del perfil */
+    width: 200px; 
 }
 
-/* Nuevos estilos para la página */
+
 .hero {
-    background-image: url('{% static "img/fondo_inicio.png" %}'); /* Imagen de fondo */
-    background-size: cover; /* Cubrir todo el contenedor */
-    color: rgb(87, 91, 88); /* Color del texto */
-    text-align: center; /* Alinear texto al centro */
-    padding: 50px 0; /* Relleno superior e inferior */
+    background-image: url('{% static "img/fondo_inicio.png" %}'); 
+    background-size: cover; 
+    color: rgb(87, 91, 88); 
+    text-align: center; 
+    padding: 50px 0; 
 }
 
 .featured-news {
-    padding: 20px; /* Relleno para la sección de noticias destacadas */
-    background-color: rgb(194, 200, 194); /* Fondo blanco para el contenido */
-    border-radius: 8px; /* Bordes redondeados */
-    color: black; /* Color del texto */
+    padding: 20px; 
+    background-color: rgb(194, 200, 194); 
+    border-radius: 8px; 
+    color: black; 
 }
 
 .post-container {
-    display: grid; /* Uso de grid para los artículos */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas responsivas */
-    gap: 20px; /* Espacio entre tarjetas */
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; 
 }
 
 .post-card {
-    border: 1px solid #ddd; /* Borde gris claro */
-    border-radius: 8px; /* Bordes redondeados */
-    overflow: hidden; /* Ocultar desbordamiento */
-    padding: 15px; /* Relleno */
-    background-color: #fff; /* Fondo blanco */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra ligera */
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    padding: 15px; 
+    background-color: #fff; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
 
 .post-card img {
-    width: 100%; /* Ancho completo */
-    height: auto; /* Altura automática */
+    width: 100%; 
+    height: auto; 
 }
 
 .post-footer {
-    display: flex; /* Uso de flexbox para pie de artículo */
-    justify-content: space-between; /* Espacio entre elementos */
-    margin-top: 10px; /* Margen superior */
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 10px; 
 }
 
 .social-links, .environment-links {
-    display: flex; /* Uso de flexbox */
-    justify-content: center; /* Centrar contenido */
-    gap: 15px; /* Espacio entre enlaces */
-    margin-top: 5px; /* Margen superior */
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-top: 5px; 
 }
 
 .logout-button {
-    background-color: #a9b2a8; /* Color de fondo rojo */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 7px; /* Bordes redondeados */
-    padding: 7px 12px; /* Relleno */
-    cursor: pointer; /* Cursor de puntero */
-    transition: background-color 0.3s; /* Transición suave */
+    background-color: #a9b2a8; 
+    color: white; 
+    border: none; 
+    border-radius: 7px; 
+    padding: 7px 12px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
 }
 
 .logout-button:hover {
-    background-color: #6ef242; /* Color de fondo más oscuro al pasar el ratón */
+    background-color: #6ef242; 
 }
 
 
