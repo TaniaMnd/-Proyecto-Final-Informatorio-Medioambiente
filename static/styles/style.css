@@ -1,9 +1,9 @@
-
+/* Estilos existentes */
 body {
     background-color: rgb(255, 255, 255); 
     color: rgb(49, 48, 48); 
-    margin: 0% 8% 8% 8%; 
-    padding: 2%; 
+    margin: 0; 
+    padding: 20px; 
     font-family: 'Poppins', sans-serif; 
 }
 
@@ -51,7 +51,10 @@ header {
 .post-container {
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-    gap: 20px; 
+    gap: 10px; 
+    margin: 20px auto; 
+    max-width: 1200px; 
+    padding: 20px; 
 }
 
 .post-card {
@@ -61,6 +64,7 @@ header {
     padding: 15px; 
     background-color: #fff; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    margin: 10px 0; 
 }
 
 .post-card img {
@@ -71,12 +75,12 @@ header {
 .post-footer {
     display: flex; 
     justify-content: space-between; 
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 .social-links, .environment-links {
     display: flex; 
-    justify-content: center; 
+    justify-content: center;
     gap: 15px; 
     margin-top: 5px; 
 }
@@ -94,5 +98,48 @@ header {
 .logout-button:hover {
     background-color: #6ef242; 
 }
+
+.header-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.btn-nuevo-post {
+    margin-left: 20px; 
+    display: inline-block;
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px; 
+}
+
+.btn-nuevo-post:hover {
+    background-color: #45a049; 
+}
+
+.btn-eliminar-post {
+    background-color: #d9534f; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-eliminar-post:hover {
+    background-color: #c9302c; 
+}
+
+
+footer .contenedor_redes {
+    padding: 20px; 
+    display: flex;
+    justify-content: left; 
+    gap: 15px; 
+}
+
 
 

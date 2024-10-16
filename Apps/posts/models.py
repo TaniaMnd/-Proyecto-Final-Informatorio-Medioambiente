@@ -2,8 +2,10 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractUser, User
 
+# Create your models here.
 
 
+# usuarios con atributos nuevos
 class User(AbstractUser):
     icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True)
     descripcion = models.TextField(max_length=350)
@@ -16,7 +18,7 @@ class User(AbstractUser):
         verbose_name_plural = "Usuarios"
 
 
-class Categorias(models.Model):  
+class Categorias(models.Model):  # nombreapp_nombreclase
     nombre = models.CharField(max_length=100)
 
     def __str__(self):
@@ -28,7 +30,7 @@ class Categorias(models.Model):
         verbose_name_plural = "Categorias"
 
 
-class Posts(models.Model):  
+class Posts(models.Model):  # nombreapp_nombreclase
     titulo = models.CharField(
         max_length=250, null=False, blank=False, verbose_name="Titulo"
     )
@@ -52,4 +54,15 @@ class Comentarios(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     contenido = models.TextField(max_length=250, verbose_name="Contenido")
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, related_name='comentarios', on_delete=models.CASCADE)
+
+
+
+    class Meta:
+        db_table = "Comentarios"  
+        verbose_name = "Comentario"  
+        verbose_name_plural = "Comentarios"  
+        ordering = ['fecha_publicacion'] 
+
+    def __str__(self):
+        return f'Comentario de {self.autor} en {self.post.titulo}'

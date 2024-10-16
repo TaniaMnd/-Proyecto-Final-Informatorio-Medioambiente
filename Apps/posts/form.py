@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Posts, Comentarios
-
+from .models import Comentarios  # Asegúrate de que el modelo Comentarios esté importado
+from django.contrib.auth.models import User
+from .models import Posts
 
 class RegistroForm(UserCreationForm):
     username = forms.CharField(
@@ -40,8 +41,6 @@ class RegistroForm(UserCreationForm):
             "icono"
         ]
 
-from django import forms
-
 class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=200,
@@ -55,11 +54,25 @@ class LoginForm(forms.Form):
         ),
         required=True
     )
-        # widget = {
-        #     "username": forms.Textarea(attrs={"class": "form-control"}),
-        #     "email": forms.EmailField(attrs={"class": "form-control"}),
-        #     "password1": forms.PasswordInput(attrs={"class": "form-control"}),
-        #     "password2": forms.PasswordInput(attrs={"class": "form-control"}),
-        #     "icono": forms.ImageField(attrs={"class": "form-control"}),
-        # }
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Posts
+        fields = ['titulo', 'contenido', 'imagen', 'categoria', 'autor']  # Asegúrate de incluir los campos que necesitas
+
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentarios
+        fields = ['contenido']  # Cambia 'contenido' al nombre de tu campo
+        widgets = {
+            'contenido': forms.Textarea(attrs={'placeholder': 'Escribe tu comentario aquí...', 'class': 'form-control'}),
+        }
+
+
+class ContactForm(forms.Form):
+    nombre = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    mensaje = forms.CharField(widget=forms.Textarea)
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.titulo }} - Enfoque Ambiental</title>
+    <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"> 
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <div class="encabezado_logo">
+            <a href="{% url 'noticias' %}">
+                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="logoenfoqueambiental">
+            </a>
+        </div>
+        <nav class="encabezado_enlaces">
+            <ul>
+                <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
+                <li><a href="">Contáctanos</a></li>
+                <li><a href="">Sobre el proyecto</a></li>
+                <li><a href="{% url 'login' %}" class="enlace_boton">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <div class="contenidonoticia">
+            <div class="contenidonoticia_titulos">
+                <h4>{{ post.categoria.nombre }} | Noticias | Actualidad</h4>
+                <h2>{{ post.titulo }}</h2>
+                <div class="contenidonoticia_titulos--division"></div>
+                <p>{{ post.fecha }} | Autor: {{ post.autor.username }}</p>
+
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'eliminar_post' post.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-eliminar-post">Eliminar Post</button>
+                </form>
+                {% endif %}
+            </div>
+            <div class="contenidonoticia_resumen">
+                <p>{{ post.resumen }}</p>
+            </div>
+            <div class="contenidonoticia_imagen">
+                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" class="img-fluid"> <!-- Usar clase img-fluid de Bootstrap -->
+            </div>
+            <div class="contenidonoticia_texto">
+                <p>{{ post.texto }}</p>
+            </div>
+            <div class="contenidonoticia_texto--division"></div>
+        </div>
+
+        <div class="contenidocomentarios_titulo">            
+            <h3>Comentarios</h3>
+        </div>
+
+        <div class="contenidocomentarios">
+            {% for comentario in post.comentarios.all %}
+                <div class="contenidocomentarios_usuario">
+                    <h4>{{ comentario.autor.username }} | {{ comentario.fecha_publicacion }}</h4>
+                    <p>"{{ comentario.contenido }}"</p>
+                </div>
+            {% empty %}
+                <p>Todavía no hay comentarios en esta noticia, ¡dejá el tuyo!</p>
+            {% endfor %}
+            <div class="contenidonoticia_texto--division"></div>
+        </div>
+
+        <div class="formcomentario">
+            <h3>Agrega tu comentario</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.contenido }}
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="contenedor_redes">
+            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="Instagram" title="Instagram"/></a>
+            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="Facebook" title="Facebook"/></a>
+            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/twitter.png' %}" alt="Twitter" title="Twitter"/></a>
+            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="YouTube" title="YouTube"/></a>
+        </div>
+        <div class="contenedor_amb">
+            <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="Vida Silvestre" title="Vida Silvestre"/></a>
+            <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="Aves Argentinas" title="Aves Argentinas"/></a>
+            <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="WWF" title="WWF"/></a>
+            <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpace.png' %}" alt="Greenpeace" title="Greenpeace"/></a>
+        </div>  
+    </footer>
+</body>
+</html>

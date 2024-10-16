@@ -4,11 +4,37 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enfoque Ambiental</title>
+    <title>Blog de Noticias Ambientales</title>
     <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS desde CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Bootstrap JS desde CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        .post-container {
+            display: flex;
+            flex-direction: column; /* Cambia a columna para que se apilen verticalmente */
+            gap: 20px; /* Espacio entre las publicaciones */
+        }
+        .post-card {
+            border: 1px solid #ccc; /* Añade un borde */
+            padding: 15px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #f9f9f9; /* Color de fondo */
+            text-decoration: none; /* Quita el subrayado del enlace */
+            color: inherit; /* Hereda el color del texto del contenedor */
+        }
+        .post-card:hover {
+            background-color: #eaeaea; /* Color de fondo al pasar el ratón */
+        }
+    </style>
 </head>
 
 <body>
@@ -46,20 +72,20 @@
 
     <main>
         <section class="featured-news">
-            <h2>Blog de noticias ambientales</h2>
+            <div class="header-section">
+                <h2>Blog de noticias ambientales</h2>
+                <a href="{% url 'nuevo_post' %}" class="btn btn-success">Nuevo Post</a>
+            </div>
             <div class="post-container">
-                {% for i in posts %}
-                <article class="post-card">
-                    <img src="{{ i.imagen.url }}" alt="{{ i.titulo }}">
-                    <h3>{{ i.titulo }}</h3>
-                    <p>{{ i.resumen }}</p>
-                    <div class="post-footer">
-                        <span>{{ i.fecha }} | {{ i.autor.username }}</span>
-                        <a href="{% url 'postindividual' i.id %}">LEER MÁS &rarr;</a>
-                    </div>
-                </article>
+                {% for noticia in noticias %}
+                <a href="{% url 'postindividual' noticia.id %}" class="post-card">
+                    <h3>{{ noticia.titulo }}</h3>
+                    <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}" style="max-width: 400px; height: auto; object-fit: cover;">
+                    <p>{{ noticia.contenido|truncatechars:30 }}</p>
+                    <p>{{ noticia.fecha_publicacion }}</p>
+                </a>
                 {% empty %}
-                <p>No hay posts disponibles para mostrar, vuelva pronto!</p>
+                <p>No hay noticias disponibles para mostrar, vuelva pronto!</p>
                 {% endfor %}
             </div>
         </section>
@@ -79,6 +105,9 @@
             <a href="https://www.greenpeace.org/argentina/" target="_blank">Greenpeace</a>
         </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
