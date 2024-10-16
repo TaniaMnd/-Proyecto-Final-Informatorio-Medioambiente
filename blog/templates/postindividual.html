@@ -29,18 +29,23 @@
             </div>
             <div class="encabezado_enlaces">
                 <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
-                <li><a href="">Contactanos</a></li>
-                <li><a href="">Sobre el proyecto</a></li>
+                <li><a href="{% url 'contacto' %}">Contactanos</a></li>
+                <li><a href="{% url 'sobrelproyecto' %}">Sobre el proyecto</a></li>
                 {% if user.is_authenticated %}
-                    <li>Bienvenido, {{ user.username }}</li>
-                    <li>
+                    <li class="bienvenidouser">
+                        {% if user.icono %}
+                            <img src="{{ user.icono.url }}" alt="Icono de {{ user.username }}" class="icono_usuario">
+                        {% endif %}
+                        Bienvenido, {{ user.username }}
+                    </li>
+                    <li class="boton_cerrarses">
                         <form action="{% url 'logout' %}" method="post" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Cerrar sesión</button>
+                            <button type="submit" class="bot_cerrar">Cerrar sesión</button>
                         </form>
                     </li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                    <li><a class="boton_inicioses" href="{% url 'login' %}">Iniciar Sesión</a></li>
                 {% endif %}
             </div>
         </header>

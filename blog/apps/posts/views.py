@@ -40,11 +40,21 @@ def eliminar_post(request, post_id):
 def quienessomos(request):
     return render(request, 'quienessomos.html')
 
+#vista para sobreelproyecto
+def sobrelproyecto(request):
+    return render(request, 'sobrelproyecto.html')
 
-# Vista para mostrar un post específico y manejar comentarios
+
+# VISTA POST ESPECIFICOS (NOTICIAS)
 def postindividual(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    comentarios = Comentario.objects.filter(post=post).order_by('-fecha_publicacion')  
+    
+    comentarios_list = Comentario.objects.filter(post=post).order_by('-fecha_publicacion')  
+    
+    # Paginación 
+    paginator = Paginator(comentarios_list, 3)  
+    page_number = request.GET.get('page')  
+    comentarios = paginator.get_page(page_number)  
 
     if request.method == 'POST':
         form = ComentarioForm(request.POST)
@@ -58,13 +68,12 @@ def postindividual(request, post_id):
                 return redirect('postindividual', post_id=post.id) 
             else:
                 return redirect('login')  
-
     else:
         form = ComentarioForm()  
 
     return render(request, 'postindividual.html', {
         'post': post,
-        'comentarios': comentarios,
+        'comentarios': comentarios,  
         'form': form
     })
 
@@ -104,5 +113,8 @@ def login_view(request):
 
     return render(request, "login.html", {"form": form})
 
+# VISTA PARA CONTACTANOS
 
+def contactanos_view(request):
+    return render(request, 'contacto.html')
 
