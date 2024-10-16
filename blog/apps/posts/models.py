@@ -41,7 +41,7 @@ class Meta:
 
 # usuarios con atributos nuevos
 class CustomUser(AbstractUser):
-    icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True)
+    icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True, default="media/usuarios/default.png")
     descripcion = models.TextField(max_length=350)
     groups = models.ManyToManyField(
         'auth.Group',

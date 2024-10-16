@@ -72,4 +72,13 @@ class LoginForm(forms.Form):
     )
 
     
+#Formulario contacto
+
+class ContactForm(forms.Form):
+    nombre_apellido = forms.CharField(max_length=100, widget=forms.TextInput)
+    asunto = forms.CharField(widget=forms.Textarea) 
+    comentario = forms.CharField(widget=forms.Textarea)
+    email = forms.EmailField(widget=forms.EmailInput)    
+    telefono = forms.CharField(max_length=15, widget=forms.TextInput)
+      
       

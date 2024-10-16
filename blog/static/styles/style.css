@@ -93,6 +93,39 @@ header {
     color: var(--blanco) !important;
 }
 
+.bienvenidouser {
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
+
+.icono_usuario {
+    width: 30px;  
+    height: 30px;
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.boton_cerrarses form {
+    display: inline;
+}
+
+.bot_cerrar {
+    font-family: 'Poppins', 'sans-serif';
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    color: #333; 
+
+}
+
+.bot_cerrar:hover {
+    color: var(--verdeagua) 
+}
 
 .contenedor_ppal-logo {
     margin-top: 18rem;
@@ -228,6 +261,8 @@ header {
 }
 
 .contenedorposteos_tarjeta {
+    position: relative;
+    overflow: hidden;
     display: flex;                
     flex-direction: column;       
     justify-content: space-between; 
@@ -330,6 +365,26 @@ header {
 .boton_vernoticia a:hover {
     background-color: var(--verdeagua);
     color: var(--blanco);
+}
+
+.boton_eliminar_contenedor {
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+    z-index: 1000;
+}
+
+.bot_eliminar {
+    background-color: rgb(231, 56, 56);
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.4rem;
+
+
 }
 
 
@@ -646,7 +701,7 @@ footer {
 .contenedorgral_registro {
     position: relative;
     z-index: 9999;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 3rem;
     display: flex;
     width: 55%;
@@ -683,13 +738,13 @@ footer {
     display: flex;
     flex-direction: column; 
     max-width: 18rem;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1rem;
 }
 
 input[type="text"],
 input[type="password"] {
-    background-color: white;
-    border: 0.5px solid #818181;
+    background-color: rgb(255, 255, 255, 0.5);
+    border: 0.5px solid #c4c4c4;
     border-radius: 1rem;
     padding: 0.5rem 0.8rem; 
     font-size: 0.8rem; 
@@ -744,4 +799,209 @@ input[type="password"]:focus {
     max-width: 100%; 
     height: auto; 
 }
+
+/* CONTACTO */
+
+.contacto_titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contacto_titulo h1 {
+    font-size: 1.8rem;
+    margin: 1.2rem 0 0rem 0;
+    color: var(--gris);
+}
+
+.contacto_titulo p {
+    margin: 0;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.contacto_form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
+    box-sizing: border-box;
+}
+
+.formcolumna1, .formcolumna2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 1rem;
+    z-index: 1000;
+}
+
+label {
+    display: flex;
+    margin: 1.2rem 0 0.4rem 0;
+    font-size: 0.8rem;
+}
+
+.formcolumna1 input, .formcolumna2 input {
+    display: flex;
+    width: 450px;
+    height: 30px;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 0.3rem;
+    padding-left: 0.5rem;
+}
+
+.formcolumna1 textarea, .formcolumna2 textarea {
+    display: flex;
+    width: 450px;
+    height: 30px;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 0.3rem;
+    padding-left: 0.5rem;
+}
+
+textarea.input-contac {
+    height: 10rem;
+    resize: none; 
+}
+
+.bot_contacto {
+    display: flex;
+    border: none;
+    margin-top: 2rem;
+    background-color: var(--negro);
+    max-width: 15rem;
+    color: var(--blanco);
+    border-radius: 1rem !important;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+.bot_contacto:hover {
+    background-color: var(--verdeagua);
+}
+
+
+.form-img {
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    z-index: 3;
+    width: 60%; 
+    height: 70%; 
+    display: flex;
+    justify-content: end;
+    margin: 2rem 8rem 4rem 0;
+}
+
+.input-contac {
+    position: relative; 
+    background: transparent !important;
+    z-index: 3; 
+}
+
+textarea[name="comentario"],
+input[type="email"] {
+    background-color: white;
+    border: 0.5px solid #d3d3d3;
+    padding: 0.5rem 0.8rem; 
+    font-size: 0.8rem; 
+    box-sizing: border-box; 
+}
+
+textarea[name="comentario"]:focus,
+input[type="email"]:focus {
+    background-color: white;
+    border-color: var(--verdeagua); 
+    outline: none; 
+    box-shadow: 0 0 3px var(--verdeagua); 
+}
+
+
+::placeholder {
+    font-family: 'Poppins', 'sans-serif';
+    font-style: italic;
+    font-size: 0.75rem;
+    color: #acacac; 
+}
+
+
+/* SOBRE EL PROYECTO */
+
+.contenedor_proyecto {
+    margin: 0 15rem;
+}
+
+.contenedor_proyecto h1 {
+    font-size: 1.8rem;
+    margin: 1.2rem 0.5rem 0.5rem 0;
+    color: var(--gris);
+}
+
+.contenedorproy_textos {
+    display: flex;
+    flex-direction: row;
+    gap: 6rem;
+}
+
+.textoproyec-izq {
+    max-width: 25rem;
+}
+
+.textoproyec-izq p, .textoproyec-der p {
+    font-size: 0.85rem;
+}
+
+.contenedorproy_tarj {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    
+}
+
+.tarjetaproy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    border: 0.14rem solid #F8BAB4;
+    border-radius: 1rem;
+    width: 22rem;
+    height: 28rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.tarjetaproy img {
+    max-width: 14rem;
+    height: auto;
+    margin: 0.8rem 0;
+
+}
+
+.tarjetaproy h3 {
+    color: #0D4D90;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.tarjetaproy p {
+    font-size: 0.8rem;
+    padding: 0 1rem;
+}
+
+.tarjetaproy_redes img {
+    margin-top: 2rem;
+    width: 1rem;
+    height: auto;
+}
+
+
 

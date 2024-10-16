@@ -40,6 +40,10 @@ def eliminar_post(request, post_id):
 def quienessomos(request):
     return render(request, 'quienessomos.html')
 
+#vista para sobreelproyecto
+def sobrelproyecto(request):
+    return render(request, 'sobrelproyecto.html')
+
 
 # Vista para mostrar un post específico y manejar comentarios
 def postindividual(request, post_id):
@@ -104,5 +108,8 @@ def login_view(request):
 
     return render(request, "login.html", {"form": form})
 
+# VISTA PARA CONTACTANOS
 
+def contactanos_view(request):
+    return render(request, 'contacto.html')
 
