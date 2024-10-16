@@ -1,21 +1,77 @@
-<!-- templates/registro.html -->
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}"> 
-</head>
-<body>
-    <div class="container">
-        <h2>Registro de Usuario</h2>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Registrarse</button>
-        </form>
-    </div>
-</body>
-</html>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Enfoque Ambiental</title>
+        <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
+        <meta content="Sistema de información territorial de la provincia del Chaco, herramienta de visualización, consulta y descarga de datos georreferenciados" name="description">
+        <meta content="geoportal, datos, georreferencia, visualizador, Chaco, SIT, Sistemas de informacion territorial, gis, sig" name="keywords">
+
+        <!-- Estilos -->
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="contenedor_ppal"> 
+            <div class="contenedor_ppal-img">
+                <img src="{% static 'img/loginfondo.png' %}" alt="">
+            </div>
+            <div class="contenedorpadre_registro">
+                <div class="tarjeta_registro">
+                    <div class="logoenfoqueamb_registro">
+                        <a href="{% url 'posts' %}">
+                            <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
+                        </a>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="registrouser_titulo">
+                            <h1>Creá tu usuario</h1>
+                            <img src="{% static 'img/defaultuser.png' %}" alt="">
+                            <div class="form-group">
+                                <label for="id_icono">Subí tu imagen de perfil</label>
+                                {{ form.icono }}  
+                            </div>
+                        </div>
+                        <div class="formregistro_columnas">
+                            <div class="formregistro_izq">
+                                <div class="formregistro_input">
+                                    <label for="id_username">Nombre de suario</label>
+                                    {{ form.username }}
+                                </div>
+                                <div class="formregistro_input">
+                                    <label for="id_email">Correo electrónico</label>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="formregistro_der">
+                                <div class="formregistro_input">
+                                    <label for="id_password1">Contraseña</label>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="formregistro_input">
+                                    <label for="id_password2">Confirmar contraseña</label>
+                                    {{ form.password2 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenedor_botonregistro">
+                            <button type="submit" class="boton_registrarse">Registrarse</button>
+                        </div>
+                    </form>    
+                </div>
+
+                
+            </div>
+
+
+
+        </div>
+
+    </body>    

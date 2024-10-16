@@ -93,6 +93,8 @@ header {
     color: var(--blanco) !important;
 }
 
+
+
 .bienvenidouser {
     font-family: 'Poppins', 'sans-serif';
     font-size: 0.8rem;
@@ -108,23 +110,21 @@ header {
     margin-right: 10px; 
 }
 
-.boton_cerrarses form {
-    display: inline;
-}
 
 .bot_cerrar {
-    font-family: 'Poppins', 'sans-serif';
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.8rem;
-    background: none;
     border: none;
-    color: #333; 
-
+    background-color: var(--gris);
+    padding: 0.45rem 0.5rem;
+    border-radius: 0.9rem;
+    color: var(--blanco);
+    transition: transform 0.3s ease;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 0.8rem;
+    cursor: pointer;
 }
 
 .bot_cerrar:hover {
-    color: var(--verdeagua) 
+    background-color: var(--verdeagua)
 }
 
 .contenedor_ppal-logo {
@@ -688,6 +688,7 @@ footer {
 
 
 
+
 /* LOGIN */
 
 .contenedorpadre_registro {
@@ -765,12 +766,18 @@ input[type="password"]:focus {
 }
 
 .enlaces_registro p {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 .enlaces_registro a {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 500;
     color: var(--verdeagua);
+}
+
+.enlaces_registro a:hover {
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 
@@ -785,6 +792,10 @@ input[type="password"]:focus {
     width: 18rem; 
     cursor: pointer; 
     transition: background-color 0.3s; 
+}
+
+.iniciosesion:hover {
+    background-color: var(--verdeagua);
 }
 
 
@@ -931,27 +942,27 @@ input[type="email"]:focus {
 /* SOBRE EL PROYECTO */
 
 .contenedor_proyecto {
-    margin: 0 15rem;
+    margin: 0 25rem;
 }
 
 .contenedor_proyecto h1 {
     font-size: 1.8rem;
-    margin: 1.2rem 0.5rem 0.5rem 0;
+    margin: 0.8rem 0.5rem 0.5rem 0;
     color: var(--gris);
 }
 
 .contenedorproy_textos {
     display: flex;
     flex-direction: row;
-    gap: 6rem;
+    gap: 4.8rem;
 }
 
 .textoproyec-izq {
-    max-width: 25rem;
+    max-width: 20rem;
 }
 
 .textoproyec-izq p, .textoproyec-der p {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
 }
 
 .contenedorproy_tarj {
@@ -959,7 +970,7 @@ input[type="email"]:focus {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 4.5rem;
     margin-top: 2rem;
     
 }
@@ -1004,4 +1015,69 @@ input[type="email"]:focus {
 }
 
 
+/* REGISTRO DE USUARIO */
 
+.contenedorpadre_registro {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    margin: 0; 
+}
+
+.tarjeta_registro {
+    position: relative;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    height: 70%;
+    padding: 6rem;  
+}
+
+
+.logoenfoqueamb_registro img {
+    max-width: 12rem;
+    height: auto;
+}
+
+.registrouser_titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 1rem; 
+    text-align: center; 
+}
+
+.registrouser_titulo h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--gris);
+}
+
+.registrouser_titulo img {
+    width: 4.5rem;
+    height: auto;
+}
+
+.formregistro_columnas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+.formregistro_input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contenedor_botonregistro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5rem;
+}
