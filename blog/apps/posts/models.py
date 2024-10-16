@@ -76,4 +76,3 @@ class Comentario(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
         
 
-
