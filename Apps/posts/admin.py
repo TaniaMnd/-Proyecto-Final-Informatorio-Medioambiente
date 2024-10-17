@@ -21,7 +21,7 @@ class PostsAdmin(admin.ModelAdmin):
             Q(categoria__nombre__icontains=search_term)
         )
 
-        # filtra resultados sin acentos
+        
         queryset |= self.model.objects.filter(
             Q(titulo__icontains=search_term_normalized) |
             Q(categoria__nombre__icontains=search_term_normalized)
@@ -29,7 +29,7 @@ class PostsAdmin(admin.ModelAdmin):
 
         return queryset, use_distinct
 
-# Registra tus modelos aquí.
+
 admin.site.register(Posts, PostsAdmin)
 admin.site.register(Categorias)
 admin.site.register(Comentarios)

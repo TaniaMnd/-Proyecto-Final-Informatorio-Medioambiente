@@ -16,7 +16,7 @@ urlpatterns = [
     path('contactanos/', contactanos_view, name='contactanos'),
     path('nuevo_post/', nuevo_post, name='nuevo_post'),
     path('posts/eliminar/<int:id>/', eliminar_post, name='eliminar_post'),
-    path('comentarios/eliminar/<int:comentario_id>/', eliminar_comentario, name='eliminar_comentario'),  # Asegúrate de que esta línea está presente
+    path('comentarios/eliminar/<int:comentario_id>/', eliminar_comentario, name='eliminar_comentario'),  
 ]
 
 

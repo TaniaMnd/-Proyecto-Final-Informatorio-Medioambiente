@@ -107,21 +107,21 @@ header {
 .btn-nuevo-post {
     margin-left: 20px; 
     display: inline-block;
-    background-color: #007BFF; /* Color azul brillante */
+    background-color: #007BFF; 
     color: white;
-    padding: 12px 24px; /* Mayor padding para un botón más grande */
+    padding: 12px 24px; 
     text-align: center;
     text-decoration: none;
     border-radius: 5px; 
-    border: none; /* Eliminar el borde predeterminado */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
-    font-size: 16px; /* Tamaño de fuente más grande */
-    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+    border: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    font-size: 16px; 
+    transition: background-color 0.3s, transform 0.2s; 
 }
 
 .btn-nuevo-post:hover {
-    background-color: #0056b3; /* Color azul más oscuro al pasar el ratón */
-    transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
+    background-color: #0056b3; 
+    transform: translateY(-2px); 
 }
 
 .btn-eliminar-post {
