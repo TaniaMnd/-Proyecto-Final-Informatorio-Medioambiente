@@ -1,12 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Posts, Comentarios
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .form import RegistroForm, ComentarioForm, PostForm, LoginForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .form import ModificarComentarioForm
+from django.urls import reverse
+
 
 def es_staff(user):
-    """Verifica si el usuario tiene permisos de staff."""
     return user.is_staff
 
 def posts(request):
@@ -39,6 +42,7 @@ def agregar_comentario(request, post_id):
         form = ComentarioForm()
 
     return render(request, 'posts/postindividual.html', {'post': post, 'form': form})
+
 
 @login_required
 def eliminar_comentario(request, comentario_id):
@@ -101,3 +105,32 @@ def eliminar_post(request, id):
 
     return render(request, "posts/postindividual.html", {'post': post})
 
+
+
+@login_required
+@user_passes_test(es_staff)
+def modificar_post(request, id):
+    post = get_object_or_404(Posts, id=id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('postindividual', id=post.id)  
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'posts/modificar_post.html', {'form': form, 'post': post})
+
+class Modificar_Comentario(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comentarios
+    form_class = ModificarComentarioForm
+    template_name = "posts/modificar_comentario.html"
+
+    def get_success_url(self):
+        comentario = self.get_object()
+        return reverse('postindividual', kwargs={'id': comentario.post.id})  
+
+    def test_func(self):
+        comentario = self.get_object()
+        return self.request.user == comentario.autor

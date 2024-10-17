@@ -29,7 +29,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 65px; /* Altura de la barra de navegación */
+            height: 65px; 
         }
         .navbar-nav {
             list-style: none;
@@ -73,6 +73,23 @@
         .contenidonoticia {
             margin: 20px 0;
         }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #6b8e23;
+            color: white;
+            text-align: center;
+        }
+        .contenedor_redes {
+            margin-bottom: 10px;
+        }
+        .icon {
+            margin: 0 10px;
+        }
+        .redes__iconos-svg {
+            width: 30px;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -109,23 +126,25 @@
                 <h4>{{ post.categoria.nombre }} | Noticias | Actualidad</h4>
                 <h2>{{ post.titulo }}</h2>
                 <div class="contenidonoticia_titulos--division"></div>
-                <p>{{ post.fecha }} | Autor: {{ post.autor.username }}</p>
+                <p>{{ post.fecha_publicacion|date:"d M Y" }} | Autor: {{ post.autor.username }}</p>
 
                 {% if request.user.is_staff %}
+                <form action="{% url 'modificar_post' post.id %}" method="get">
+                    <button type="submit">Modificar</button>
+                </form>
                 <form method="POST" action="{% url 'eliminar_post' post.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn-eliminar-post">Eliminar Post</button>
+                    <button type="submit" class="btn-eliminar-post">Eliminar</button>
                 </form>
                 {% endif %}
             </div>
-            <div class="contenidonoticia_resumen">
-                <p>{{ post.resumen }}</p>
-            </div>
             <div class="contenidonoticia_imagen">
-                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" class="img-fluid">
+                {% if post.imagen %}
+                    <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" class="img-fluid">
+                {% endif %}
             </div>
             <div class="contenidonoticia_texto">
-                <p>{{ post.texto }}</p>
+                <p>{{ post.contenido }}</p>
             </div>
             <div class="contenidonoticia_texto--division"></div>
         </div>
@@ -143,7 +162,10 @@
                     {% if request.user == comentario.autor or request.user.is_staff %}
                     <form method="POST" action="{% url 'eliminar_comentario' comentario.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn-eliminar-comentario">Eliminar Comentario</button>
+                        <button type="submit" class="btn-eliminar-comentario">Eliminar</button>
+                    </form>
+                    <form method="GET" action="{% url 'modificar_comentario' comentario.id %}">
+                        <button type="submit">Modificar</button>
                     </form>
                     {% endif %}
                 </div>
@@ -159,7 +181,8 @@
             <form method="POST" action="{% url 'agregar_comentario' post.id %}">
                 {% csrf_token %}
                 <div class="form-group">
-                    {{ form.contenido }}  
+                    <label for="contenido" style="display:none;">Contenido</label> 
+                    {{ form.contenido }} 
                     <button type="submit" class="btn-submit">Enviar</button>
                 </div>
             </form>
@@ -171,17 +194,14 @@
 
     <footer>
         <div class="contenedor_redes">
-            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="Instagram" title="Instagram"/></a>
-            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="Facebook" title="Facebook"/></a>
-            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/twitter.png' %}" alt="Twitter" title="Twitter"/></a>
-            <a href="" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="YouTube" title="YouTube"/></a>
+            <a href="#" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/instagram.png' %}" alt="Instagram" title="Instagram"/></a>
+            <a href="#" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/facebook.png' %}" alt="Facebook" title="Facebook"/></a>
+            <a href="#" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/twitter.png' %}" alt="Twitter" title="Twitter"/></a>
+            <a href="#" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/youtube.png' %}" alt="YouTube" title="YouTube"/></a>
         </div>
         <div class="contenedor_amb">
             <a href="https://www.vidasilvestre.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/vidasilv.png' %}" alt="Vida Silvestre" title="Vida Silvestre"/></a>
             <a href="https://www.avesargentinas.org.ar/" target="_blank" class="icon"><img class="redes__iconos-svg" src="{% static 'img/iconos/avesarg.png' %}" alt="Aves Argentinas" title="Aves Argentinas"/></a>
-            <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/wwf.png' %}" alt="WWF" title="WWF"/></a>
-            <a href="https://www.greenpeace.org/argentina/" class="icon" target="_blank"><img class="redes__iconos-svg" src="{% static 'img/iconos/greenpeace.png' %}" alt="Greenpeace" title="Greenpeace"/></a>
-        </div>
-    </footer>
-</body>
-</html>
+            <a href="https://wwf.panda.org/es/" class="icon" target="_blank"><img class="redes__iconos-svg"
+
+
