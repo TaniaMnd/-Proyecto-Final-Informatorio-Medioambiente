@@ -88,14 +88,36 @@
                 <div class="contenidocomentarios_usuario">
                     <h4>{{ comentario.autor.username }} | {{ comentario.fecha_publicacion }}</h4>
                     <p>" {{ comentario.contenido }} "</p>
+        
+                    {% if comentario.autor == request.user or request.user.is_staff %}
+                        <a href="{% url 'postindividual_editar' post.id comentario.id %}"><img src="{% static 'img/iconos/edit.png' %}" alt="editar" title="Editar" class="icono-editar"></a>
+                        <form action="{% url 'postindividual' post.id %}" method="POST" class="form-eliminar">
+                            {% csrf_token %}
+                            <input type="hidden" name="eliminar_id" value="{{ comentario.id }}">
+                            <button type="submit" class="boton-eliminar"><img class="deletecoment" src="{% static 'img/iconos/delete.png' %}" title="Eliminar" alt="Eliminar"></button>
+                        </form>
+                    {% endif %}
                 </div>
             {% empty %}
                 <p>Todavía no hay comentarios en esta noticia, dejá el tuyo!</p>
             {% endfor %}
-
         </div>
+    
+        <!-- Formulario cuando clickeo EDITAR -->
+        {% if comentario_id %}
+        <div class="formcomentario">
+            <h4 class="editcoment">Editar comentario</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.contenido }}
+                    <button type="submit" class="btn-submitact">↑</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
 
-        
+
         <div class="paginacion_comentarios">
             <span class="step-links">
                 {% if comentarios.has_previous %}
