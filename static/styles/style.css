@@ -32,7 +32,6 @@ header {
     width: 200px; 
 }
 
-
 .hero {
     background-image: url('{% static "img/fondo_inicio.png" %}'); 
     background-size: cover; 
@@ -108,16 +107,21 @@ header {
 .btn-nuevo-post {
     margin-left: 20px; 
     display: inline-block;
-    background-color: #4CAF50; 
+    background-color: #007BFF; /* Color azul brillante */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Mayor padding para un botón más grande */
     text-align: center;
     text-decoration: none;
     border-radius: 5px; 
+    border: none; /* Eliminar el borde predeterminado */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    font-size: 16px; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
 }
 
 .btn-nuevo-post:hover {
-    background-color: #45a049; 
+    background-color: #0056b3; /* Color azul más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
 }
 
 .btn-eliminar-post {
@@ -133,13 +137,10 @@ header {
     background-color: #c9302c; 
 }
 
-
 footer .contenedor_redes {
     padding: 20px; 
     display: flex;
     justify-content: left; 
     gap: 15px; 
 }
-
-
 

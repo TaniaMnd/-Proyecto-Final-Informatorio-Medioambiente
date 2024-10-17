@@ -4,6 +4,7 @@ from .models import Comentarios  # Asegúrate de que el modelo Comentarios esté
 from django.contrib.auth.models import User
 from .models import Posts
 
+
 class RegistroForm(UserCreationForm):
     username = forms.CharField(
         max_length=200,
@@ -75,4 +76,3 @@ class ContactForm(forms.Form):
     nombre = forms.CharField(max_length=100)
     email = forms.EmailField()
     mensaje = forms.CharField(widget=forms.Textarea)
-

@@ -11,28 +11,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS desde CDN -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
-    <!-- Bootstrap JS desde CDN -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <style>
         .post-container {
             display: flex;
-            flex-direction: column; /* Cambia a columna para que se apilen verticalmente */
-            gap: 20px; /* Espacio entre las publicaciones */
+            flex-direction: column; 
+            gap: 20px; 
         }
         .post-card {
-            border: 1px solid #ccc; /* Añade un borde */
-            padding: 15px; /* Espaciado interno */
-            border-radius: 5px; /* Bordes redondeados */
-            background-color: #f9f9f9; /* Color de fondo */
-            text-decoration: none; /* Quita el subrayado del enlace */
-            color: inherit; /* Hereda el color del texto del contenedor */
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            border-radius: 5px; 
+            background-color: #f9f9f9; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: background-color 0.3s; 
         }
         .post-card:hover {
-            background-color: #eaeaea; /* Color de fondo al pasar el ratón */
+            background-color: #eaeaea; 
         }
     </style>
 </head>
@@ -41,7 +44,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="Enfoque Ambiental">
+                <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="Enfoque Ambiental" class="img-fluid">
             </div>
             <nav>
                 <ul class="navbar">
@@ -55,7 +58,7 @@
                         <span>Hola, {{ user.username }}!</span> 
                         <form action="{% url 'logout' %}" method="post" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" class="logout-button">Salir</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Salir</button>
                         </form>
                     </li>
                     {% else %}
@@ -74,13 +77,15 @@
         <section class="featured-news">
             <div class="header-section">
                 <h2>Blog de noticias ambientales</h2>
-                <a href="{% url 'nuevo_post' %}" class="btn btn-success">Nuevo Post</a>
+                {% if request.user.is_staff %}
+                    <a href="{% url 'nuevo_post' %}" class="btn btn-success">Nuevo Post</a>
+                {% endif %}
             </div>
             <div class="post-container">
                 {% for noticia in noticias %}
                 <a href="{% url 'postindividual' noticia.id %}" class="post-card">
                     <h3>{{ noticia.titulo }}</h3>
-                    <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}" style="max-width: 400px; height: auto; object-fit: cover;">
+                    <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}" class="img-fluid" style="max-width: 400px; height: auto; object-fit: cover;">
                     <p>{{ noticia.contenido|truncatechars:30 }}</p>
                     <p>{{ noticia.fecha_publicacion }}</p>
                 </a>
@@ -105,11 +110,6 @@
             <a href="https://www.greenpeace.org/argentina/" target="_blank">Greenpeace</a>
         </div>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
 
