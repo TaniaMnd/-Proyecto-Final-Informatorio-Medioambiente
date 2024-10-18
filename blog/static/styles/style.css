@@ -1186,3 +1186,24 @@ input[type="email"]:focus {
 .boton_registrarse:hover {
     background-color: var(--verdeagua);
 }
+
+.messages {
+    list-style: none;
+    padding: 0;
+}
+
+.messages li {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -103,14 +103,26 @@ def registrouser(request):
     if request.method == "POST":
         form = RegistroForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  
-            return redirect('posts')  
+            user = form.save()  # Guarda el usuario
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            user = authenticate(username=username, password=password)  
+            if user is not None:
+                login(request, user)  
+                messages.success(request, "Usuario creado exitosamente.")
+                return redirect('posts')  
+            else:
+                messages.error(request, "Error al iniciar sesión.")
+        else:
+            messages.error(request, "Por favor, corrige los errores en el formulario.")
     else:
         form = RegistroForm()
+    
     return render(request, 'registro.html', {'form': form})
 
 class CustomLogoutView(LogoutView):
-    next_page = 'posts'  
+    next_page = 'posts' 
 
 
 # VISTA PARA LOGIN
