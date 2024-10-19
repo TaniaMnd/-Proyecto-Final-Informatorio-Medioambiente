@@ -134,3 +134,4 @@ class Modificar_Comentario(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         comentario = self.get_object()
         return self.request.user == comentario.autor
+    
