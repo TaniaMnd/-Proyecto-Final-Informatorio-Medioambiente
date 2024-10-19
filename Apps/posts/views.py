@@ -122,7 +122,7 @@ def modificar_post(request, id):
 
     return render(request, 'posts/modificar_post.html', {'form': form, 'post': post})
 
-class Modificar_Comentario(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class Modificar_Comentario(LoginRequiredMixin, UserPassesTestMixin, UpdateView): #actualizado
     model = Comentarios
     form_class = ModificarComentarioForm
     template_name = "posts/modificar_comentario.html"
