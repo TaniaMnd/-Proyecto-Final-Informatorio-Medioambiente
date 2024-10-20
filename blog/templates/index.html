@@ -25,9 +25,7 @@
             </div>
             <header>
                 <div class="encabezado_logo">
-                    <a href="{% url 'posts' %}">
                         <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
-                    </a>
                 </div>
                 <div class="encabezado_enlaces">
                     <li><a href="{% url 'quienessomos' %}">¿Quiénes somos?</a></li>
@@ -121,7 +119,7 @@
                     <div class="boton_eliminar_contenedor">
                         <form action="{% url 'eliminar_post' i.id %}" method="post">
                             {% csrf_token %}
-                            <button class="bot_eliminar" type="submit" title="Eliminar">x</button>
+                            <button class="bott_eliminar" type="submit" title="Eliminar">x</button>
                         </form>
                     </div>
                     {% endif %}
