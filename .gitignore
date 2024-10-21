@@ -1,5 +1,9 @@
 #no subir a repositorio: env, archivos media, keys, debugs, bd
 entorno
 *.pyc
-__pycache__/git add -f blog/blog/db.sqlite3git add -f blog/blog/db.sqlite3
+__pycache__/
+*.key
+*.env
+*.log
 .vscode
+migrations/
