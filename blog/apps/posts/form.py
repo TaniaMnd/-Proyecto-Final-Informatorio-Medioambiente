@@ -58,15 +58,9 @@ class RegistroForm(UserCreationForm):
             "email",
             "password1",
             "password2",
-<<<<<<< HEAD
-            "icono"
-        ]'''
-
-=======
             "icono",
-        ]
+        ]'''
                 
->>>>>>> main
 
 #########################################################################
 
