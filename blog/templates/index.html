@@ -91,9 +91,11 @@
                         </li>
                     {% endfor %}
                 </ul>
+                {% if user.is_staff or user.is_superuser %}
                 <div class="nuevanoticia">
                     <a href="{% url 'nuevo_post' %}" class="">Subir nueva noticia</a>
                 </div>
+                {% endif %}
             </div>
         </div>
 
