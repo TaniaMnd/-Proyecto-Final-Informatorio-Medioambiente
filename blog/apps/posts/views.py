@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Categoria, Comentario
 from django.core.paginator import Paginator
-from .form import ComentarioForm, RegistroForm, LoginForm
+from .form import ComentarioForm, RegistroForm, LoginForm, PostForm, ContactForm
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 
 
 def posts(request):
@@ -25,10 +26,11 @@ def posts(request):
 
     return render(request, 'index.html', {'posts': page_obj, 'categorias': categorias})
 
-
+#Staff o superusuario
 def is_staff(user):
     return user.is_staff or user.is_superuser
 
+#Elimnar posteo
 @user_passes_test(is_staff) 
 def eliminar_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -40,33 +42,59 @@ def eliminar_post(request, post_id):
 def quienessomos(request):
     return render(request, 'quienessomos.html')
 
+#vista para sobreelproyecto
+def sobrelproyecto(request):
+    return render(request, 'sobrelproyecto.html')
 
-# Vista para mostrar un post específico y manejar comentarios
-def postindividual(request, post_id):
+
+def postindividual(request, post_id, comentario_id=None, eliminar_id=None):
     post = get_object_or_404(Post, id=post_id)
-    comentarios = Comentario.objects.filter(post=post).order_by('-fecha_publicacion')  
+    comentarios_list = Comentario.objects.filter(post=post).order_by('-fecha_publicacion')
 
-    if request.method == 'POST':
-        form = ComentarioForm(request.POST)
-        if form.is_valid():
-            comentario = form.save(commit=False)
-            comentario.post = post
-            
-            if request.user.is_authenticated:
-                comentario.autor = request.user  
-                comentario.save()
-                return redirect('postindividual', post_id=post.id) 
-            else:
-                return redirect('login')  
+    # Paginación
+    paginator = Paginator(comentarios_list, 3)
+    page_number = request.GET.get('page')
+    comentarios = paginator.get_page(page_number)
 
+    if comentario_id:
+        comentario_a_editar = get_object_or_404(Comentario, id=comentario_id, post=post)
+        if comentario_a_editar.autor != request.user and not request.user.is_staff:
+            return HttpResponseForbidden("No podes editar este comentario")
+        form = ComentarioForm(request.POST or None, instance=comentario_a_editar)
+        if request.method == 'POST' and form.is_valid():
+            form.save()
+            return redirect('postindividual', post_id=post.id)
     else:
-        form = ComentarioForm()  
+        form = ComentarioForm(request.POST or None)
+
+        if request.method == 'POST':
+            if not request.user.is_authenticated:
+                return HttpResponseRedirect(f'/login/?next={request.path}')
+
+            if form.is_valid():
+                nuevo_comentario = form.save(commit=False)
+                nuevo_comentario.post = post
+                nuevo_comentario.autor = request.user
+                nuevo_comentario.save()
+                return redirect('postindividual', post_id=post.id)
+
+    if request.method == 'POST' and 'eliminar_id' in request.POST:
+        eliminar_id = request.POST.get('eliminar_id')
+        comentario_a_eliminar = get_object_or_404(Comentario, id=eliminar_id)
+        if comentario_a_eliminar.autor == request.user or request.user.is_staff:
+            comentario_a_eliminar.delete()
+            return redirect('postindividual', post_id=post.id)
+        else:
+            return HttpResponseForbidden("No tienes permiso para eliminar este comentario.")
 
     return render(request, 'postindividual.html', {
         'post': post,
         'comentarios': comentarios,
-        'form': form
+        'form': form,
+        'comentario_id': comentario_id,
     })
+
+
 
 
 # VISTA PARA FORMULARIO DE REGISTRO
@@ -75,14 +103,26 @@ def registrouser(request):
     if request.method == "POST":
         form = RegistroForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  
-            return redirect('posts')  
+            user = form.save()  # Guarda el usuario
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            user = authenticate(username=username, password=password)  
+            if user is not None:
+                login(request, user)  
+                messages.success(request, "Usuario creado exitosamente.")
+                return redirect('posts')  
+            else:
+                messages.error(request, "Error al iniciar sesión.")
+        else:
+            messages.error(request, "Por favor, corrige los errores en el formulario.")
     else:
         form = RegistroForm()
+    
     return render(request, 'registro.html', {'form': form})
 
 class CustomLogoutView(LogoutView):
-    next_page = 'posts'  
+    next_page = 'posts' 
 
 
 # VISTA PARA LOGIN
@@ -104,5 +144,49 @@ def login_view(request):
 
     return render(request, "login.html", {"form": form})
 
+# VISTA PARA CONTACTANOS
 
+def contactanos_view(request):
+    mensaje = None  # Inicializamos el mensaje como None
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mensaje = "Gracias! Nos pondremos en contacto a la brevedad."  
+    else:
+        form = ContactForm()
+
+    return render(request, 'contacto.html', {'form': form, 'mensaje': mensaje})
+
+
+
+
+#NUEVA NOTICIA
+@user_passes_test(is_staff) 
+def nuevo_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.autor = request.user
+            post.save()
+            return redirect('posts')
+    else:
+        form = PostForm()
+
+    return render(request, 'nuevo_post.html', {'form': form})
+
+@user_passes_test(is_staff) 
+def modificar_post(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('postindividual', post_id=post.id) 
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'modificar_post.html', {'form': form, 'post': post})
 

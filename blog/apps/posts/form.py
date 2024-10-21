@@ -1,6 +1,7 @@
 from django import forms
-from .models import Comentario, CustomUser, Post
 from django.contrib.auth.forms import UserCreationForm
+from .models import User  
+from .models import Comentario, Post
 
 #Formulario COMENTARIOS EN NOTICIAS
 class ComentarioForm(forms.ModelForm):
@@ -42,19 +43,19 @@ class RegistroForm(UserCreationForm):
     icono = forms.ImageField(
         label="Imagen de perfil",
         required=False,
-        widget=forms.FileInput(attrs={"class": "form-control form-control-lg"}),
+        widget=forms.FileInput(attrs={"class": "form-control form-control-lg"}), 
     )
 
     class Meta:
-        model = CustomUser
+        model = User  
         fields = [
             "username",
             "email",
             "password1",
             "password2",
-            "icono"
+            "icono",
         ]
-
+                
 
 #Formulario LOGIN
 class LoginForm(forms.Form):
@@ -72,4 +73,18 @@ class LoginForm(forms.Form):
     )
 
     
+#Formulario contacto
+
+class ContactForm(forms.Form):
+    nombre_apellido = forms.CharField(max_length=100, widget=forms.TextInput)
+    asunto = forms.CharField(widget=forms.Textarea) 
+    comentario = forms.CharField(widget=forms.Textarea)
+    email = forms.EmailField(widget=forms.EmailInput)    
+    telefono = forms.CharField(max_length=15, widget=forms.TextInput)
+      
+      
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['titulo', 'resumen', 'texto', 'imagen', 'categoria'] 
       
