@@ -2,5 +2,10 @@
 entorno
 *.pyc
 __pycache__/
+<<<<<<< HEAD
 .vscode
 env/
+=======
+.git add -f blog/blog/db.sqlite3git add -f blog/blog/db.sqlite3
+.vscode
+>>>>>>> b33bdf62f12aa1ea9bca9d8ba8c9200e5946fd4a

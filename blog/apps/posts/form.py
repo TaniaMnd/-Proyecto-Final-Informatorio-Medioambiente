@@ -1,6 +1,10 @@
+'''from django import forms
+from .models import Comentario, CustomUser
+from django.contrib.auth.forms import UserCreationForm'''
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User  
+from .models import User  # Asegúrate de usar el modelo personalizado
 from .models import Comentario, Post
 
 #Formulario COMENTARIOS EN NOTICIAS
@@ -17,8 +21,9 @@ class ComentarioForm(forms.ModelForm):
             'class': 'form-control'  
         })
 
+#######################################################################
 
-#Formulario de registro
+'''#Formulario de registro
 class RegistroForm(UserCreationForm):
     username = forms.CharField(
         max_length=200,
@@ -53,9 +58,60 @@ class RegistroForm(UserCreationForm):
             "email",
             "password1",
             "password2",
+<<<<<<< HEAD
+            "icono"
+        ]'''
+
+=======
             "icono",
         ]
                 
+>>>>>>> main
+
+#########################################################################
+
+
+#Formulario de registro
+class RegistroForm(UserCreationForm):
+    username = forms.CharField(
+        max_length=200,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Nombre de usuario"},
+        ),
+    )
+    email = forms.EmailField(
+        max_length=200,
+        help_text="Required",
+        widget=forms.EmailInput(
+            attrs={"class": "form-control", "placeholder": "name@example.com"}
+        ),
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
+    )
+  
+    icono = forms.ImageField(
+        label="Imagen de perfil",
+        required=False,
+        widget=forms.FileInput(attrs={"class": "form-control form-control-lg"}), 
+    )
+
+    class Meta:
+        model = User  # Ahora usamos tu modelo personalizado
+        fields = [
+            "username",
+            "email",
+            "password1",
+            "password2",
+            "icono",
+        ]
+            
+            
+            
+  ##############################################          
 
 #Formulario LOGIN
 class LoginForm(forms.Form):
