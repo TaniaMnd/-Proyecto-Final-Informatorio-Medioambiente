@@ -1,4 +1,0 @@
-#no subir a repositorio: env, archivos media, keys, debugs, bd
-entorno
-*.pyc
-__pycache__/
