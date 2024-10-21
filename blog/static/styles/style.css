@@ -216,8 +216,11 @@ header {
 
 .contenedorblog_categorias {
     display: flex;
+    justify-content: space-between;
     margin: 2rem;
 }
+
+
 
 .contenedorblog_categorias li {
     margin-right: 2rem;
@@ -234,7 +237,20 @@ header {
     font-size: 0.9rem;
  }
 
+.nuevanoticia {
+    margin-right: 2.5rem;  
+    background-color: var(--verdeagua);
+    padding: 0.2rem 0.5rem;  
+    border-radius: 2rem;
+}
 
+.nuevanoticia a {
+    color: white;
+}
+
+.nuevanoticia a:hover {
+    color: white;
+}
 
 
 /* NOTICIA */
@@ -368,23 +384,45 @@ header {
 }
 
 .boton_eliminar_contenedor {
+    display: flex;
+    align-items: center;
+    background-color: rgb(231, 56, 56);
+    border-radius: 2rem;
     position: absolute;
-    top: 10px; 
-    right: 10px;
+    top: 20px; 
+    right: 30px;
     z-index: 1000;
 }
 
 .bott_eliminar {
-    background-color: rgb(231, 56, 56);
+    display: flex;
     border: none;
-    padding: 0.2rem 0.7rem;
-    border-radius: 50%;
     color: white;
     cursor: pointer;
     font-size: 1rem;
     margin: 0.4rem;
 }
 
+.boton_editar_contenedor {
+    display: flex;
+    align-items: center;
+    margin-right: 0.7rem;
+    background-color: var(--gris);
+    border-radius: 2rem;
+    position: absolute;
+    top: 20px; 
+    right: 60px;
+    z-index: 1000;
+}
+
+.bott_editar {  
+    display: flex;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.4rem;
+}
 
 /* MAS PAGINAS - PAGINACION */
 

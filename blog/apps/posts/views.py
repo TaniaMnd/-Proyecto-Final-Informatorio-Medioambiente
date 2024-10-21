@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Categoria, Comentario
 from django.core.paginator import Paginator
-from .form import ComentarioForm, RegistroForm, LoginForm
+from .form import ComentarioForm, RegistroForm, LoginForm, PostForm, ContactForm
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import authenticate, login
@@ -147,5 +147,46 @@ def login_view(request):
 # VISTA PARA CONTACTANOS
 
 def contactanos_view(request):
-    return render(request, 'contacto.html')
+    mensaje = None  # Inicializamos el mensaje como None
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mensaje = "Gracias! Nos pondremos en contacto a la brevedad."  
+    else:
+        form = ContactForm()
+
+    return render(request, 'contacto.html', {'form': form, 'mensaje': mensaje})
+
+
+
+
+#NUEVA NOTICIA
+@user_passes_test(is_staff) 
+def nuevo_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.autor = request.user
+            post.save()
+            return redirect('posts')
+    else:
+        form = PostForm()
+
+    return render(request, 'nuevo_post.html', {'form': form})
+
+@user_passes_test(is_staff) 
+def modificar_post(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('postindividual', post_id=post.id) 
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'modificar_post.html', {'form': form, 'post': post})
 

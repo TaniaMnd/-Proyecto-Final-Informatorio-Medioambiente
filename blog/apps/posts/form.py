@@ -35,32 +35,38 @@ class RegistroForm(UserCreationForm):
         max_length=200,
         help_text="Required",
         widget=forms.EmailInput(
-            attrs={"class": "form-control", "placeholder": "ejemplo@gmail.com"}
+            attrs={"class": "form-control", "placeholder": "name@example.com"}
         ),
     )
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "escribí tu contraseña"}), required=True
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
     )
     password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "confirmá tu contraseña"}), required=True
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
     )
   
     icono = forms.ImageField(
         label="Imagen de perfil",
         required=False,
-        widget=forms.FileInput(attrs={"class": "form-control form-control-lg"}),
+        widget=forms.FileInput(attrs={"class": "form-control form-control-lg"}), 
     )
 
     class Meta:
-        model = CustomUser
+        model = User  
         fields = [
             "username",
             "email",
             "password1",
             "password2",
+<<<<<<< HEAD
             "icono"
         ]'''
 
+=======
+            "icono",
+        ]
+                
+>>>>>>> main
 
 #########################################################################
 
@@ -132,4 +138,9 @@ class ContactForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput)    
     telefono = forms.CharField(max_length=15, widget=forms.TextInput)
       
+      
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['titulo', 'resumen', 'texto', 'imagen', 'categoria'] 
       
