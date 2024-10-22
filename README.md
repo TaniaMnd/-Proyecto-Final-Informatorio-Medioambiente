@@ -84,11 +84,11 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 ---
 
 **Capturas de la interfaz**  
-- ![Página principal](media/home.png)
-- ![Noticia individual](media/noticiaindividual.png)
-- ![Inicio de sesión](media/login.png)
-- ![Registro](media/registro.png)
-- ![Contacto](media/contacto.png)
+- ![Página principal](blog/media/home.png)
+- ![Noticia individual](blog/media/noticiaindividual.png)
+- ![Inicio de sesión](blog/media/login.png)
+- ![Registro](blog/media/registro.png)
+- ![Contacto](blog/media/contacto.png)
 
 ---
 
