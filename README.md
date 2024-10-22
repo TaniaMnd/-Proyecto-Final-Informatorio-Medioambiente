@@ -1,6 +1,18 @@
 🌱 Enfoque Ambiental - Blog de Noticias  
 Este es un blog de noticias dedicado a temas ambientales, creado con **Django**. El proyecto busca informar y crear conciencia sobre la situación del medio ambiente.
 
+**INFORMATORIO - 1° COHORTE 2024 - ETAPA 2 | COMISIÓN 5 - GRUPO 5:
+INTEGRANTES:**
+
+* Maldonado, Tania Elizabeth
+
+* Misiaszek, Lucía
+
+* Servin, Cecilia Beatriz
+
+Profesor: Frias, Daniel
+Mentor: Alves, Ramiro 
+
 ---
 
 **Índice**  
