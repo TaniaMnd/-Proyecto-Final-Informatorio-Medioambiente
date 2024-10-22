@@ -2,3 +2,8 @@
 entorno
 *.pyc
 __pycache__/
+*.key
+*.env
+*.log
+.vscode
+migrations/

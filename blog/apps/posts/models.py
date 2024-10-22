@@ -27,7 +27,7 @@ class Post(models.Model):
 
 
 
-class Meta: #orden de las consultas a la BD
+class Meta: 
     ordering = ('-publicado',)  
     
     def __str__(self):
@@ -41,7 +41,7 @@ class Meta: #orden de las consultas a la BD
 
 # usuarios con atributos nuevos
 class CustomUser(AbstractUser):
-    icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True)
+    icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True, default="media/usuarios/default.png")
     descripcion = models.TextField(max_length=350)
     groups = models.ManyToManyField(
         'auth.Group',
@@ -75,4 +75,4 @@ class Comentario(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
         
-        
+
