@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 🌱 Enfoque Ambiental - Blog de Noticias  
 Este es un blog de noticias dedicado a temas ambientales, creado con **Django**. El proyecto busca informar y crear conciencia sobre la situación del medio ambiente.
 
