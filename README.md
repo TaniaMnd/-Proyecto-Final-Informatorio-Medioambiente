@@ -18,7 +18,8 @@ Mentor: Alves, Ramiro
 
 **Índice**  
 - [Descripción](#Descripción)  
-- [Funcionalidades](#Funcionalidades)  
+- [Funcionalidades](#Funcionalidades)
+- [Diseño de interfaz](#Diseño-de-interfaz) 
 - [Instalación](#Instalación)  
 - [Uso](#Uso)  
 - [Capturas de Pantalla](#Capturas-de-Pantalla)  
@@ -41,6 +42,11 @@ El blog permite que los usuarios lean, publiquen y comenten sobre noticias ambie
 - Interfaz utilizando HTML, CSS y JavaScript.
 - Mappeo de URLs para la navegación interna.
 - Integración con redes sociales y links a ONG ambientales
+
+---
+
+**Diseño de interfaz**
+- [Figma](https://www.figma.com/design/819LLnvTPwKZ2cNNGIPrxf/Blog---TP-Final-Info?node-id=0-1&t=5xZc3NF7Czvc9LUv-1)
 
 ---
 
@@ -99,6 +105,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 - **SQLite (Base de datos)** 
 - **PythonAnywhere** 
 - **Control de versiones:** Git
+- **Figma (Diseño de interfaz)**
 
 ---
 
