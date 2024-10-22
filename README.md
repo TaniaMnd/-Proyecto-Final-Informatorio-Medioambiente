@@ -11,6 +11,7 @@ INTEGRANTES:**
 * Servin, Cecilia Beatriz
 
 Profesor: Frias, Daniel
+
 Mentor: Alves, Ramiro 
 
 ---
@@ -82,7 +83,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 
 ---
 
-**Capturas de Pantalla**  
+**Capturas de la interfaz**  
 - ![Página principal](media/home.png)
 - ![Noticia individual](media/noticiaindividual.png)
 - ![Inicio de sesión](media/login.png)
