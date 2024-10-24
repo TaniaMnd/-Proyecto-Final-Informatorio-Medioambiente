@@ -61,8 +61,8 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 
 2. **Crear y activar un entorno virtual:**
    ```bash
-   python -m venv env
-   source env/bin/activate  
+   python -m venv entorno
+   cd <nombre del directorio>/entorno/Scripts/activate 
    ```
 
 3. **Instalar dependencias:**
