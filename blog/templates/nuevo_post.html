@@ -1,18 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subir nueva noticia</title>
-</head>
-<body>
-    <h1>Crear Nuevo Post</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}  
-        <button type="submit">Crear Post</button>
-    </form>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nueva noticia - Enfoque Ambiental</title>
+        <link rel="icon" type="image/png" href="{% static 'img/enfoqueambico.png' %}">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
 
-    <a href="{% url 'posts' %}">Volver a Noticias</a>
-</body>
-</html>
+        <!-- Estilos -->
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poly:ital@0;1&display=swap" rel="stylesheet">
+    </head>
+
+
+    <body>
+        <div class="contnuevanoticia">
+            <div class="nuevanoticia_form">
+                <div class="logo_nuevanoticia">
+                    <a href="{% url 'posts' %}">
+                        <img src="{% static 'img/enfoqueamb_logo.png' %}" alt="">
+                    </a>
+                </div>
+                <h1>Subir nueva noticia</h1>
+                <form method="POST" enctype="multipart/form-data" class="inputs_nuevanoticia">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Subir noticia</button>
+                </form>
+            </div>
+
+            <div class="nuevanoticia_preview">
+                <div class="previewnoticia_titulos">
+                    <h2>Título de la noticia</h2>
+                    <div class="contenidonoticia_titulos--division"></div>
+                    <div class="redesautor_preview">
+                        <p>Dia, Mes, Año | Autor: usuario</p>
+                        <div class="redes_preview">
+                            <a href=""  class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/Instagram.png' %}" alt="instagram" title="instagram"/></a>
+                            <a href=""  class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/facebook.png' %}" alt="facebook" title="facebook"/></a>
+                            <a href="" class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/twitter.png' %}" alt="x-twitter" title="x-twitter"/></a>
+                            <a href="" class="icon1"><img class="redes__iconos-pag" src="{% static 'img/iconos/youtube.png' %}" alt="youtube" title="youtube"/></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview_resumen">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi quo voluptate iure
+                        iste suscipit maxime sunt rerum eaque delectus voluptates repudiandae alias,
+                         quibusdam et recusandae commodi repellendus, tenetur, earum sint.</p>
+                </div>
+                <div class="preview_imagen">
+                    <img src="{% static 'img/previewnoticia.png' %}" alt="">
+                </div>
+                <div class="preview_texto">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo vitae aut est commodi, enim provident consequuntur placeat a esse doloribus veritatis quisquam vero nam eaque exercitationem in sapiente. Cumque, deserunt.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, quos ad. Eaque libero rem odit earum perspiciatis illo nihil, iste vitae tenetur, cupiditate accusamus tempora nemo facilis tempore commodi nesciunt!
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque deserunt ad esse cum quas voluptates aperiam delectus sequi, labore repellat alias. Harum eligendi aperiam labore minus accusamus incidunt consectetur saepe!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>

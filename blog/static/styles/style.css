@@ -597,15 +597,6 @@ footer {
     font-size: 1rem;
     max-width: 50%;
     line-height: 1.3;
-}
-
-.contenidonoticia_texto p {
-    font-family: "Poly", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1rem;
-    max-width: 50%;
-    line-height: 1.3;
     max-width: 100%; 
     column-count: 2; 
     column-gap: 3rem; 
@@ -1244,4 +1235,155 @@ input[type="email"]:focus {
 .error {
     background-color: #f8d7da;
     color: #721c24;
+}
+
+/** NUEVA NOTICIA **/
+
+.contnuevanoticia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 10rem 1rem 10rem;
+    border-radius: 2rem;
+    padding: 1rem 5rem;
+    gap: 8rem;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+
+
+.logo_nuevanoticia img {
+    width: 12rem;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.nuevanoticia_form h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--gris);
+}
+
+
+
+.inputs_nuevanoticia form {
+    display: flex; 
+    flex-direction: column; 
+}
+
+.inputs_nuevanoticia label {
+    margin-bottom: 0.1rem;
+}
+
+.inputs_nuevanoticia input[type="text"],
+.inputs_nuevanoticia textarea {
+    border: 1px solid #ccc; 
+    font-size: 0.8rem;
+    width: 30rem;
+    resize: none;
+    border-radius: 0.4rem
+}
+
+.inputs_nuevanoticia input[type="file"] {
+    font-size: 0.8rem;
+    font-family: 'Poppins';
+}
+
+.inputs_nuevanoticia input[type="text"]:focus,
+.inputs_nuevanoticia textarea:focus {
+    background-color: white;
+    border-color: var(--verdeagua); 
+    outline: none; 
+    box-shadow: 0 0 3px var(--verdeagua);
+}
+
+
+.inputs_nuevanoticia button {
+    margin: 1.5rem 0;
+    padding: 0.3rem 0.8rem; 
+    background-color: var(--negro); 
+    border: none; 
+    border-radius: 1rem;
+    color: white; 
+    font-size: 0.8rem;
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.inputs_nuevanoticia button:hover {
+    background-color: var(--verdeagua);
+}
+
+
+.nuevanoticia_preview {
+    margin: 1rem;
+    padding: 3rem;
+    border: 2px solid #649681;
+    border-radius: 2rem;
+}
+
+.previewnoticia_titulos h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.redesautor_preview {
+    display: flex;
+    justify-content: space-between;
+}
+
+.redesautor_preview p {
+    font-size: 0.7rem;
+}
+
+.redes_preview {
+    margin-right: 14rem;
+}
+
+.redes_preview img {
+    width: 1.3rem;
+    height: auto;
+}
+
+.preview_imagen img {
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.preview_resumen p {
+    font-family: "Poly", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.8rem;
+    max-width: 50%;
+    line-height: 1.3;
+    margin-top: 0.5rem;
+}
+
+
+.preview_texto p {
+    font-family: "Poly", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.8rem;
+    max-width: 50%;
+    line-height: 1.3;
+    max-width: 100%; 
+    column-count: 2; 
+    column-gap: 3rem; 
+    margin-top: 1rem;
+}
+
+
+.inputs_nuevanoticia input[type="file"] {
+    font-size: 0.8rem;
+}
+
+/* Alinear correctamente el checkbox de eliminar */
+.inputs_nuevanotica .checkbox-inline {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
