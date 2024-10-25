@@ -97,7 +97,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 - ![Contacto](/blog/media/media/contacto.png)
 
 
-**Queres ver un poco más?** - [Te dejamos un video!](https://youtu.be/B8uVgEKQK7I?feature=shared)
+**¿Querés ver un poco más?** - [Te dejamos un video!](https://youtu.be/B8uVgEKQK7I?feature=shared)
 
 ---
 
