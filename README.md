@@ -83,7 +83,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 ---
 
 **Uso**  
-1. Accede a `https://enfoque2024.pythonanywhere.com//` en tu navegador.  
+1. Accede a `https://enfoque2024.pythonanywhere.com/` en tu navegador.  
 2. Regístrate e inicia sesión para agregar comentarios.  
 3. Los administradores o usuarios con permisos de staff podrán gestionar las publicaciones.  
 
@@ -95,6 +95,9 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 - ![Inicio de sesión](/blog/media/media/login.png)
 - ![Registro](/blog/media/media/registro.png)
 - ![Contacto](/blog/media/media/contacto.png)
+
+
+**Queres ver un poco más?** - [Te dejamos un video!](https://youtu.be/B8uVgEKQK7I?feature=shared)
 
 ---
 
