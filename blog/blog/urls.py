@@ -8,7 +8,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('enfoque_2024_admin/', admin.site.urls),
     path('', include('apps.posts.urls')), 
     path ('', posts, name='posts'),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
